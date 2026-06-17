@@ -1,85 +1,162 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROVE & CO. | Doğrulama</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistemik Sermaye</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+
+body{
+background:#0b1020;
+color:white;
+overflow-x:hidden;
+}
+
+/* VIDEO BACKGROUND */
+.video-bg{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+filter:brightness(0.35) contrast(1.1);
+}
+
+.overlay{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:radial-gradient(circle at top, rgba(30,58,138,0.4), rgba(11,16,32,0.95));
+z-index:-1;
+}
+
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:60px;
+font-weight:800;
+letter-spacing:-2px;
+}
+
+.hero p{
+margin-top:15px;
+font-size:20px;
+color:#cbd5e1;
+min-height:30px;
+}
+
+.btn{
+margin-top:30px;
+padding:14px 28px;
+background:linear-gradient(135deg,#38bdf8,#2563eb);
+border:none;
+border-radius:12px;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{transform:scale(1.05);}
+
+section{
+padding:100px 20px;
+max-width:1000px;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+padding:25px;
+border-radius:16px;
+backdrop-filter:blur(10px);
+}
+
+h2{color:#38bdf8;margin-bottom:20px;}
+
+.cta{
+text-align:center;
+padding:120px 20px;
+}
+
+</style>
 </head>
-<body class="bg-slate-950 text-white font-sans p-6">
 
-    <!-- Ana Ekran -->
-    <main class="max-w-md mx-auto">
-        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[2rem] text-center shadow-2xl">
-            <div class="h-40 bg-gradient-to-tr from-slate-800 to-black rounded-3xl mb-6 flex items-center justify-center border border-slate-700">
-                <span class="text-2xl font-black">ROVE V1</span>
-            </div>
-            <h2 class="text-xl font-bold mb-4">Finansal Okuryazarlık</h2>
-            <button onclick="checkAuth()" class="w-full bg-white text-black py-4 rounded-2xl font-bold hover:bg-amber-500 transition">İNCELE</button>
-        </div>
-    </main>
+<body>
 
-    <!-- Doğrulama Akışı -->
-    <div id="modal-container" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center p-6 z-50">
-        <!-- Adım 1: E-posta -->
-        <div id="step-1" class="bg-white text-black p-8 rounded-[2rem] w-full max-w-sm">
-            <h2 class="font-bold text-xl mb-4">E-posta Doğrula</h2>
-            <input id="email-input" type="email" placeholder="Gmail adresin" class="w-full p-4 bg-slate-100 rounded-2xl mb-3">
-            <button onclick="sendCode()" class="w-full bg-black text-white py-4 rounded-2xl font-bold">KOD GÖNDER</button>
-        </div>
-        
-        <!-- Adım 2: Kod Girişi -->
-        <div id="step-2" class="bg-white text-black p-8 rounded-[2rem] w-full max-w-sm hidden">
-            <h2 class="font-bold text-xl mb-4">Kodunu Gir</h2>
-            <p class="text-xs text-slate-500 mb-4" id="sent-to"></p>
-            <input id="code-input" type="text" placeholder="Gelen kod" class="w-full p-4 bg-slate-100 rounded-2xl mb-3 text-center tracking-widest text-xl">
-            <button onclick="verifyCode()" class="w-full bg-black text-white py-4 rounded-2xl font-bold">KAYDI TAMAMLA</button>
-        </div>
+<video class="video-bg" autoplay muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-working-from-home-1579/1080p.mp4" type="video/mp4">
+</video>
 
-        <!-- Adım 3: Kitap Özeti (Başarılı) -->
-        <div id="step-3" class="bg-slate-900 text-white p-8 rounded-[2rem] w-full max-w-lg hidden text-left border border-slate-700">
-            <h2 class="text-2xl font-bold text-amber-500 mb-4">Kayıt Başarılı!</h2>
-            <p class="text-slate-400 mb-6 italic">"Finansal piyasalarda kalıcı olmanın yolu, sadece veriyi değil, sistemi yönetmektir."</p>
-            <a href="https://shopier.com" class="block bg-amber-500 text-black text-center py-4 rounded-2xl font-black mb-4">TAM SÜRÜMÜ SATIN AL</a>
-            <button onclick="location.reload()" class="w-full text-slate-600 text-xs underline">ÇIKIŞ YAP</button>
-        </div>
-    </div>
+<div class="overlay"></div>
 
-    <script>
-        let generatedCode = "";
+<div class="hero">
+<h1>Sistemik Sermaye</h1>
+<p id="dynamicText">Parayı değil, sistemi öğren.</p>
+<button class="btn">Kitabı İncele</button>
+</div>
 
-        function sendCode() {
-            const email = document.getElementById('email-input').value;
-            if(!email.endsWith('@gmail.com')) { alert("Lütfen geçerli bir Gmail gir!"); return; }
-            
-            generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
-            alert("Simülasyon: Kodun " + generatedCode + " olarak oluşturuldu (Bunu kopyala).");
-            
-            document.getElementById('step-1').classList.add('hidden');
-            document.getElementById('step-2').classList.remove('hidden');
-            document.getElementById('sent-to').innerText = email + " adresine gönderildi.";
-        }
+<section>
+<h2>Problem</h2>
+<div class="card">
+Çoğu insan para kazanır ama sistem kuramadığı için kaybeder.
+</div>
+</section>
 
-        function verifyCode() {
-            const code = document.getElementById('code-input').value;
-            if(code === generatedCode) {
-                document.getElementById('step-2').classList.add('hidden');
-                document.getElementById('step-3').classList.remove('hidden');
-                localStorage.setItem('auth', 'true');
-            } else {
-                alert("Hatalı kod!");
-            }
-        }
+<section>
+<h2>Çözüm</h2>
+<div class="card">
+Finansal düşünceyi değiştir, sonucu değiştir.
+</div>
+</section>
 
-        function checkAuth() {
-            if(localStorage.getItem('auth')) {
-                document.getElementById('modal-container').classList.remove('hidden');
-                document.getElementById('step-1').classList.add('hidden');
-                document.getElementById('step-3').classList.remove('hidden');
-            } else {
-                document.getElementById('modal-container').classList.remove('hidden');
-            }
-        }
-    </script>
+<section>
+<h2>İçerik</h2>
+<div class="card">
+Sermaye yönetimi, risk kontrolü, strateji, finansal zihin.
+</div>
+</section>
+
+<div class="cta">
+<h2>Bugün Başla</h2>
+<button class="btn">Satın Al</button>
+</div>
+
+<script>
+// dynamic sales text
+const texts = [
+"Parayı değil, sistemi öğren.",
+"Sermayeni kontrol et, özgürlüğü kazan.",
+"Finansal düşünceni yeniden kur.",
+"Zenginlik bir sistemdir, şans değil."
+];
+
+let i = 0;
+setInterval(()=>{
+document.getElementById("dynamicText").style.opacity=0;
+setTimeout(()=>{
+i = (i+1)%texts.length;
+document.getElementById("dynamicText").innerText = texts[i];
+document.getElementById("dynamicText").style.opacity=1;
+},300);
+},2500);
+</script>
+
 </body>
 </html>
