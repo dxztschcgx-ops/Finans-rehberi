@@ -17,11 +17,17 @@
             white-space: nowrap;
         }
         .rove-logo {
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             font-family: 'Georgia', serif;
-            font-weight: lighter;
-            font-size: 8px;
-            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+            font-size: 9px;
+        }
+        /* Premium Kitap Kapağı Efektleri */
+        .book-shadow {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .book-spine {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.25) 100%);
         }
     </style>
 </head>
@@ -40,10 +46,6 @@
             <div class="flex flex-wrap justify-center gap-4 text-sm font-medium pt-2 md:pt-0 items-center">
                 <a href="#" class="text-yellow-400">Ana Sayfa</a>
                 <a href="#kitaplar" class="hover:text-gray-300">Kitaplar</a>
-                <a href="#" class="hover:text-gray-300 flex items-center">
-                    Sepetim <span id="cart-count" class="bg-yellow-500 text-slate-900 text-xs font-bold px-1.5 py-0.5 rounded-full ml-1">0</span>
-                </a>
-                <!-- Kullanıcı Durum Alanı -->
                 <div id="user-status-area">
                     <button onclick="openAuthModal()" class="bg-yellow-500 text-slate-900 px-3 py-1 rounded-md text-xs font-bold hover:bg-yellow-600 transition">Giriş Yap / Kayıt Ol</button>
                 </div>
@@ -91,7 +93,7 @@
 
     <!-- 4. YENİ ÇIKAN KİTAPLARIM -->
     <main id="kitaplar" class="container mx-auto px-4 py-16">
-        <div class="flex items-center justify-center gap-4 mb-12">
+        <div class="flex items-center justify-center gap-4 mb-14">
             <div class="h-px bg-gray-200 flex-grow max-w-xs"></div>
             <h3 class="text-2xl md:text-3xl font-extrabold text-center text-slate-950 tracking-wide uppercase">
                 YENİ ÇIKAN KİTAPLARIM
@@ -99,52 +101,78 @@
             <div class="h-px bg-gray-200 flex-grow max-w-xs"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             
             <!-- 1. Kitap: FİNANS REHBERİ -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300">
+            <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300 relative overflow-hidden group">
                 <div>
-                    <div class="w-44 h-64 bg-gradient-to-b from-slate-900 to-black rounded-xl mx-auto shadow-2xl mb-6 flex flex-col justify-between p-4 text-center border-l-4 border-yellow-500">
-                        <div class="rove-logo mt-1">R O V E Management</div>
-                        <div>
-                            <p class="text-white text-sm font-bold leading-tight tracking-wide mb-1">FİNANS REHBERİ</p>
-                            <p class="text-[10px] text-gray-300 font-medium">TEMELLER VE STRATEJİLER</p>
+                    <!-- Yenilenen Premium Kapak Alanı -->
+                    <div class="w-48 h-68 bg-gradient-to-br from-[#0c1f33] via-[#163654] to-[#050d14] rounded-2xl mx-auto book-shadow mb-8 flex flex-col justify-between p-5 text-center relative border border-slate-800/50">
+                        <!-- Sayfa Sırtı Efekti -->
+                        <div class="absolute left-0 top-0 bottom-0 w-3 rounded-l-2xl book-spine border-r border-black/10"></div>
+                        
+                        <div class="rove-logo text-amber-400 font-light uppercase tracking-[0.25em] z-10">Rove Management</div>
+                        
+                        <!-- Geometrik İç Çerçeve / Minimalist Tasarım Çizgisi -->
+                        <div class="my-auto py-4 border-y border-amber-500/20 mx-2 z-10">
+                            <p class="text-white text-base font-black tracking-widest leading-tight mb-1 font-serif">FİNANS REHBERİ</p>
+                            <p class="text-[9px] text-amber-400 font-bold uppercase tracking-widest">Temeller & Stratejiler</p>
                         </div>
-                        <div class="w-16 h-1 bg-yellow-500 mx-auto rounded-full mb-1"></div>
+                        
+                        <div class="flex flex-col items-center gap-2 z-10">
+                            <div class="w-8 h-[2px] bg-amber-400 rounded-full"></div>
+                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / REHBER</p>
+                        </div>
                     </div>
+
                     <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">FİNANS REHBERİ:<br>TEMELLER VE STRATEJİLER</h4>
-                    <p class="text-sm text-gray-600 text-center mt-2 font-medium">ROVE MANAGEMENT</p>
-                    <div class="text-yellow-500 text-center text-lg my-3 font-bold">★ 4.8</div>
+                    <p class="text-sm text-gray-500 text-center mt-2 font-medium tracking-wide">ROVE MANAGEMENT EDİTORYAL</p>
+                    <div class="text-amber-500 text-center text-sm my-3 font-bold flex items-center justify-center gap-1">
+                        <span>★ 4.8</span><span class="text-gray-300 text-xs font-normal">(124 Değerlendirme)</span>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-center font-extrabold text-2xl text-slate-950 my-3">120.00 TL</p>
+                <div class="mt-4">
+                    <p class="text-center font-black text-2xl text-slate-950 my-3">120.00 TL</p>
                     <div class="grid grid-cols-2 gap-3 text-xs font-bold">
-                        <button onclick="handleInceleClick('finans')" class="bg-gray-100 text-slate-800 py-3 rounded-lg hover:bg-gray-200 transition">İNCELE</button>
-                        <button onclick="addToCart()" class="bg-yellow-500 text-slate-950 py-3 rounded-lg hover:bg-yellow-600 transition">SEPETE EKLE</button>
+                        <button onclick="handleInceleClick('finans')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">İNCELE</button>
+                        <button onclick="redirectToStore('finans')" class="bg-amber-500 text-slate-950 py-3.5 rounded-xl hover:bg-amber-600 transition tracking-wider">SATIN AL</button>
                     </div>
                 </div>
             </div>
 
             <!-- 2. Kitap: DİJİTAL VARLIKLAR -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300">
+            <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300 relative overflow-hidden group">
                 <div>
-                    <div class="w-44 h-64 bg-gradient-to-b from-teal-950 to-black rounded-xl mx-auto shadow-2xl mb-6 flex flex-col justify-between p-4 text-center border-l-4 border-teal-400">
-                        <div class="rove-logo mt-1">R O V E Management</div>
-                        <div>
-                            <p class="text-white text-sm font-bold leading-tight tracking-wide mb-1">DİJİTAL VARLIKLAR</p>
-                            <p class="text-[10px] text-gray-300 font-medium">BLOKZİNCİRİ & GELECEĞİN PARASI</p>
+                    <!-- Yenilenen Premium Kapak Alanı -->
+                    <div class="w-48 h-68 bg-gradient-to-br from-[#0a2321] via-[#123d3a] to-[#020a0a] rounded-2xl mx-auto book-shadow mb-8 flex flex-col justify-between p-5 text-center relative border border-teal-950/50">
+                        <!-- Sayfa Sırtı Efekti -->
+                        <div class="absolute left-0 top-0 bottom-0 w-3 rounded-l-2xl book-spine border-r border-black/10"></div>
+                        
+                        <div class="rove-logo text-teal-400 font-light uppercase tracking-[0.25em] z-10">Rove Management</div>
+                        
+                        <!-- Geometrik İç Çerçeve / Minimalist Tasarım Çizgisi -->
+                        <div class="my-auto py-4 border-y border-teal-400/20 mx-2 z-10">
+                            <p class="text-white text-base font-black tracking-widest leading-tight mb-1 font-serif">DİJİTAL VARLIKLAR</p>
+                            <p class="text-[9px] text-teal-300 font-bold uppercase tracking-widest">Blokzinciri & Analiz</p>
                         </div>
-                        <div class="w-16 h-1 bg-teal-400 mx-auto rounded-full mb-1"></div>
+                        
+                        <div class="flex flex-col items-center gap-2 z-10">
+                            <div class="w-8 h-[2px] bg-teal-400 rounded-full"></div>
+                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / REHBER</p>
+                        </div>
                     </div>
+
                     <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">DİJİTAL VARLIKLAR VE BLOKZİNCİRİ</h4>
-                    <p class="text-sm text-gray-600 text-center mt-2 font-medium">ROVE MANAGEMENT</p>
-                    <div class="text-yellow-500 text-center text-lg my-3 font-bold">★ 4.9</div>
+                    <p class="text-sm text-gray-500 text-center mt-2 font-medium tracking-wide">ROVE MANAGEMENT EDİTORYAL</p>
+                    <div class="text-amber-500 text-center text-sm my-3 font-bold flex items-center justify-center gap-1">
+                        <span>★ 4.9</span><span class="text-gray-300 text-xs font-normal">(186 Değerlendirme)</span>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-center font-extrabold text-2xl text-slate-950 my-3">145.00 TL</p>
+                <div class="mt-4">
+                    <p class="text-center font-black text-2xl text-slate-950 my-3">145.00 TL</p>
                     <div class="grid grid-cols-2 gap-3 text-xs font-bold">
-                        <button onclick="handleInceleClick('dijital')" class="bg-gray-100 text-slate-800 py-3 rounded-lg hover:bg-gray-200 transition">İNCELE</button>
-                        <button onclick="addToCart()" class="bg-yellow-500 text-slate-950 py-3 rounded-lg hover:bg-yellow-600 transition">SEPETE EKLE</button>
+                        <button onclick="handleInceleClick('dijital')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">İNCELE</button>
+                        <button onclick="redirectToStore('dijital')" class="bg-amber-500 text-slate-950 py-3.5 rounded-xl hover:bg-amber-600 transition tracking-wider">SATIN AL</button>
                     </div>
                 </div>
             </div>
@@ -193,6 +221,20 @@
     <script>
         let isLoggedIn = false;
 
+        const storeLinks = {
+            finans: "FİNANS_REHBERİ_SHOPİER_LİNKİNİ_BURAYA_YAPIŞTIR",
+            dijital: "DİJİTAL_VARLIKLAR_SHOPİER_LİNKİNİ_BURAYA_YAPIŞTIR"
+        };
+
+        function redirectToStore(key) {
+            const link = storeLinks[key];
+            if(link.includes("YAPIŞTIR")) {
+                alert("Rove Sistem Mesajı: Mağaza onay sürecindedir. Onay alındıktan sonra bu alandan doğrudan satın alım yapılabilecektir.");
+            } else {
+                window.open(link, '_blank');
+            }
+        }
+
         function checkUserStatus() {
             const savedUser = localStorage.getItem('rove_user');
             if(savedUser) {
@@ -236,22 +278,13 @@
             }
         }
 
-        // Sepet Sayaç Mantığı
-        let cartCount = 0;
-        function addToCart() {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            alert('Ürün sepetinize eklendi!');
-        }
-
-        // Kitap İçerikleri, Sayfaları ve Detayları
         const bookData = {
             finans: {
                 title: "FİNANS REHBERİ: TEMELLER VE STRATEJİLER",
                 pages: "248 Sayfa",
                 readingTime: "Tahmini Okuma: 6 Saat",
                 desc: "Finansal özgürlüğün kapılarını aralayın. Bu rehber, bütçe yönetiminden risk analizine kadar finans dünyasında sağlam adımlar atmanız için tasarlandı.",
-                chapters: ["Bölüm 1: Finansal Okuryazarlığın Temelleri", "Bölüm 2: Bütçe ve Nakit Akışı Yönetimi", "Bölüm 3: Geleneksel Yatırım Stratejileri", "Bölüm 4: Makroekonomik Göstergeleri Okuma"]
+                chapters: ["Bölüm 1: Finansal Okuryazarlığın Temelleri", "Bölüm 2: Bütçe und Nakit Akışı Yönetimi", "Bölüm 3: Geleneksel Yatırım Stratejileri", "Bölüm 4: Makroekonomik Göstergeleri Okuma"]
             },
             dijital: {
                 title: "DİJİTAL VARLIKLAR VE BLOKZİNCİRİ",
@@ -278,14 +311,14 @@
                 <ul class="text-xs text-gray-600 space-y-1 mb-4">
                     ${book.chapters.map(ch => `<li>• ${ch}</li>`).join('')}
                 </ul>
-                <div class="text-xs text-gray-400 italic">Yayıncı: Rove Management</div>
+                <div class="text-xs text-gray-400 italic mb-4">Yayıncı: Rove Management</div>
+                <button onclick="closeModal(); redirectToStore('${key}');" class="w-full bg-amber-500 text-slate-950 text-xs font-bold py-2.5 rounded-lg hover:bg-amber-600 transition">BU KİTABI ŞİMDİ SATIN AL</button>
             `;
             document.getElementById('book-modal').classList.remove('hidden');
         }
 
         function closeModal() { document.getElementById('book-modal').classList.add('hidden'); }
 
-        // Saat güncelleme
         function updateTime() {
             document.getElementById('live-time').innerText = new Date().toLocaleTimeString('tr-TR');
         }
