@@ -165,6 +165,7 @@
         <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative">
             <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
             <h3 class="font-extrabold text-xl text-slate-950 mb-4 text-center">Rove Portal</h3>
+            
             <div class="space-y-3">
                 <div>
                     <label class="text-xs font-bold text-gray-600 block mb-1">E-posta Adresiniz</label>
@@ -174,8 +175,8 @@
                     <label class="text-xs font-bold text-gray-600 block mb-1">Şifreniz</label>
                     <input type="password" id="auth-pass" placeholder="••••••••" class="w-full border p-2 rounded-lg text-sm focus:outline-none focus:border-[#0f2d4a]">
                 </div>
-                <button onclick="simulateLogin()" class="w-full bg-[#0f2d4a] text-white py-2.5 rounded-lg text-sm font-bold shadow hover:bg-slate-800 transition mt-2">Hızlı Kayıt Ol & Giriş Yap</button>
-                <p class="text-[10px] text-gray-400 text-center">Kitap özetlerine erişmek için herhangi bir bilgiyle kayıt olabilirsiniz.</p>
+                <button onclick="simulateLogin()" class="w-full bg-[#0f2d4a] text-white py-2.5 rounded-lg text-sm font-bold shadow hover:bg-slate-800 transition mt-2">Kayıt Ol & Giriş Yap</button>
+                <p class="text-[10px] text-gray-400 text-center">Kitapların sayfa sayılarına ve özetlerine erişmek için ücretsiz kayıt olabilirsiniz.</p>
             </div>
         </div>
     </div>
@@ -190,7 +191,6 @@
 
     <!-- JAVASCRIPT MANTIKLARI -->
     <script>
-        // Kullanıcı Durum Yönetimi (Simüle)
         let isLoggedIn = false;
 
         function checkUserStatus() {
@@ -219,7 +219,7 @@
             localStorage.setItem('rove_user', email);
             closeAuthModal();
             checkUserStatus();
-            alert('Başarıyla giriş yapıldı! Artık tüm kitap özetlerini inceleyebilirsiniz.');
+            alert('Başarıyla kayıt olundu! Kitap özetleri ve sayfa bilgileri açıldı.');
         }
 
         function logout() {
@@ -229,7 +229,7 @@
 
         function handleInceleClick(key) {
             if(!isLoggedIn) {
-                alert('Bu kitabın detaylı özetine ve içeriğine erişmek için lütfen ücretsiz kayıt olun veya giriş yapın.');
+                alert('Kitap özeti, sayfa sayısı ve detaylı içeriğe erişmek için lütfen ücretsiz kayıt olun.');
                 openAuthModal();
             } else {
                 openModal(key);
@@ -244,15 +244,19 @@
             alert('Ürün sepetinize eklendi!');
         }
 
-        // Kitap İçerikleri
+        // Kitap İçerikleri, Sayfaları ve Detayları
         const bookData = {
             finans: {
                 title: "FİNANS REHBERİ: TEMELLER VE STRATEJİLER",
+                pages: "248 Sayfa",
+                readingTime: "Tahmini Okuma: 6 Saat",
                 desc: "Finansal özgürlüğün kapılarını aralayın. Bu rehber, bütçe yönetiminden risk analizine kadar finans dünyasında sağlam adımlar atmanız için tasarlandı.",
                 chapters: ["Bölüm 1: Finansal Okuryazarlığın Temelleri", "Bölüm 2: Bütçe ve Nakit Akışı Yönetimi", "Bölüm 3: Geleneksel Yatırım Stratejileri", "Bölüm 4: Makroekonomik Göstergeleri Okuma"]
             },
             dijital: {
                 title: "DİJİTAL VARLIKLAR VE BLOKZİNCİRİ",
+                pages: "312 Sayfa",
+                readingTime: "Tahmini Okuma: 8 Saat",
                 desc: "Geleceğin ekonomisinde yerinizi alın. Kripto paralar, merkeziyetsiz finans (DeFi) ve teknik analiz temellerini Rove Management ekolüyle kavrayın.",
                 chapters: ["Bölüm 1: Blokzinciri ve Bitcoin Nedir?", "Bölüm 2: Akıllı Sözleşmeler ve Ethereum", "Bölüm 3: İndikatörler (RSI, Bollinger Bantları vb.)", "Bölüm 4: Portföy ve Risk Yönetimi"]
             }
@@ -262,9 +266,15 @@
             const book = bookData[key];
             const content = document.getElementById('modal-content');
             content.innerHTML = `
-                <h3 class="font-extrabold text-xl text-slate-950 mb-3">${book.title}</h3>
+                <div class="flex justify-between items-start mb-2 border-b pb-2">
+                    <h3 class="font-extrabold text-xl text-slate-950">${book.title}</h3>
+                </div>
+                <div class="flex gap-2 mb-4">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded">${book.pages}</span>
+                    <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">${book.readingTime}</span>
+                </div>
                 <p class="text-sm text-gray-600 leading-relaxed mb-4">${book.desc}</p>
-                <h4 class="font-bold text-sm text-slate-900 border-b pb-2 mb-2">KİTAP İÇERİĞİ:</h4>
+                <h4 class="font-bold text-sm text-slate-900 mb-2">KİTAP İÇERİĞİ:</h4>
                 <ul class="text-xs text-gray-600 space-y-1 mb-4">
                     ${book.chapters.map(ch => `<li>• ${ch}</li>`).join('')}
                 </ul>
@@ -280,7 +290,7 @@
             document.getElementById('live-time').innerText = new Date().toLocaleTimeString('tr-TR');
         }
         setInterval(updateTime, 1000); updateTime();
-        checkUserStatus(); // Sayfa açılınca kullanıcı durumunu kontrol et
+        checkUserStatus();
     </script>
 </body>
 </html>
