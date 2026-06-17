@@ -26,7 +26,6 @@
         <p class="text-slate-400 text-lg max-w-xl mb-8">Rove & Co. tarafından hazırlanan, aktif varlık yönetiminden e-ticaret kaldıraçlarına kadar uzanan rehber serisi.</p>
         
         <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl max-w-sm w-full text-left shadow-2xl">
-            <!-- GÜNCEL KİTAP KAPAĞI -->
             <div class="h-48 relative rounded-xl mb-4 overflow-hidden border border-slate-700 shadow-inner">
                 <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900"></div>
                 <div class="absolute inset-0 flex flex-col items-center justify-center">
@@ -43,29 +42,6 @@
         </div>
     </main>
 
-    <!-- GİRİŞ MODAL -->
-    <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-white text-slate-900 p-8 rounded-2xl max-w-md w-full relative shadow-2xl">
-            <button onclick="toggleModal('auth-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl">&times;</button>
-            <div class="flex border-b border-slate-200 mb-6">
-                <button id="tab-login-btn" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-center font-bold text-sm border-b-2 border-slate-950 text-slate-950">Giriş Yap</button>
-                <button id="tab-register-btn" onclick="switchAuthTab('register')" class="flex-1 pb-3 text-center font-semibold text-sm border-b-2 border-transparent text-slate-400 hover:text-slate-600">Kayıt Ol</button>
-            </div>
-            <div id="auth-msg" class="text-xs text-center mb-4 hidden bg-red-50 text-red-600 p-2 rounded-lg"></div>
-            <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-4">
-                <div>
-                    <label class="text-xs font-bold text-slate-500 block mb-1">E-posta Adresi</label>
-                    <input type="email" id="auth-email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-slate-950">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-slate-500 block mb-1">Şifre</label>
-                    <input type="password" id="auth-password" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-slate-950">
-                </div>
-                <button type="submit" id="auth-submit-btn" class="w-full bg-slate-950 text-white font-bold py-3 rounded-xl text-sm hover:bg-slate-800 transition">Giriş Yap</button>
-            </form>
-        </div>
-    </div>
-
     <!-- KİTAP OKUMA MODAL -->
     <div id="book-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col relative shadow-2xl">
@@ -73,46 +49,47 @@
             <div id="book-header" class="mb-4"></div>
             <div id="book-body" class="flex-grow overflow-y-auto pr-2 custom-scroll space-y-6 text-slate-300 text-sm md:text-base leading-relaxed"></div>
             <div id="purchase-area" class="mt-4 hidden">
-                <a href="https://www.shopier.com/KENDI_LINKIN" target="_blank" class="w-full block text-center bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 font-black tracking-wide py-3.5 rounded-xl text-sm transition shadow-lg">💳 TAM SÜRÜMÜ SATIN AL</a>
+                <a href="https://www.shopier.com/KENDI_LINKIN" target="_blank" class="w-full block text-center bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-slate-950 font-black tracking-wide py-3.5 rounded-xl text-sm transition shadow-lg">💳 TAM SÜRÜMÜ SATIN AL</a>
             </div>
         </div>
     </div>
 
     <script>
         let currentUser = JSON.parse(localStorage.getItem('rove_user')) || null;
-        let authMode = 'login';
+        
         const bookData = {
             title: "Finansal Okuryazarlık Rehberi V1",
-            preview: `<h3 class="text-xl font-bold text-white mb-2">📖 İNCELEME PANELİ</h3><p class="text-slate-400">Kitabın tam sürümüne erişmek için satın almalısınız.</p>`,
+            preview: `
+                <h3 class="text-xl font-bold text-white mb-2">📖 İNCELEME PANELİ</h3>
+                <p class="text-slate-400 mb-4">Bu rehber, Rove & Co. tarafından premium kullanıcılar için hazırlanmıştır. Tam sürümüne erişmek için satın almalısınız.</p>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-left">
+                    <h4 class="font-bold text-white mb-2 text-sm text-amber-500">📌 İÇİNDEKİLER (Özet)</h4>
+                    <ul class="space-y-1 text-xs text-slate-400">
+                        <li>Bölüm 1: Finansal Okuryazarlığın Temelleri</li>
+                        <li>Bölüm 2: Bütçe ve Nakit Akışı Yönetimi</li>
+                        <li>Bölüm 3: Hisse Senetleri ve Borsa Yatırımcılığı</li>
+                        <li>Bölüm 4: Kripto Para Piyasaları ve Dijital Varlıklar</li>
+                        <li>Bölüm 5: Emtialar, Altın ve Güvenli Liman</li>
+                        <li>Bölüm 6: Gayrimenkul Yatırımları</li>
+                        <li>Bölüm 7: Girişimcilik, E-Ticaret ve Shopify</li>
+                        <li>Bölüm 8: Kod ve Medya Kaldıracı</li>
+                        <li>Bölüm 9: Vergi, Hukuk ve Şirket Yapıları</li>
+                        <li>Bölüm 10: Finansal Psikoloji (FOMO & FUD)</li>
+                        <li>Bölüm 11: Borç Yönetimi ve Kartopu Yöntemi</li>
+                        <li>Bölüm 12: Büyük Final - Finansal Özgürlük Planı</li>
+                    </ul>
+                </div>
+            `,
             fullText: `<h2 class="text-2xl font-black text-amber-500">👑 TAM ERİŞİM</h2><p>Tüm 12 bölüm burada...</p>`
         };
 
-        updateAuthUI();
-
         function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
-        function switchAuthTab(type) { /* Tab geçiş kodları */ }
-        function handleAuth(e) {
-            e.preventDefault();
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-            if (email === 'admin@rove.com' && password === 'rove2026') {
-                currentUser = { email: email, role: 'admin' };
-                localStorage.setItem('rove_user', JSON.stringify(currentUser));
-                toggleModal('auth-modal');
-                updateAuthUI();
-                return;
-            }
-            // ... (Kullanıcı kayıt/giriş mantığı)
-            currentUser = { email: email, role: 'user' };
-            localStorage.setItem('rove_user', JSON.stringify(currentUser));
-            toggleModal('auth-modal');
-            updateAuthUI();
-        }
-        function updateAuthUI() { /* Buton güncelleme */ }
+        
         function openBook() {
-            if (!currentUser) { toggleModal('auth-modal'); return; }
+            if (!currentUser) { alert("Lütfen giriş yapın!"); return; }
             const body = document.getElementById('book-body');
             const purchaseArea = document.getElementById('purchase-area');
+            
             if (currentUser.role === 'admin') {
                 body.innerHTML = bookData.fullText;
                 purchaseArea.classList.add('hidden');
