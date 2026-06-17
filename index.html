@@ -3,53 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROVE & CO. | Premium Rehber</title>
+    <title>ROVE & CO. | Doğrulama</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-white font-sans">
+<body class="bg-slate-950 text-white font-sans p-6">
 
-    <!-- Header -->
-    <header class="p-8 max-w-lg mx-auto flex justify-between items-center">
-        <h1 class="text-xl font-black tracking-widest">ROVE & CO.</h1>
-        <button onclick="toggleModal('auth-modal')" class="text-xs font-bold border border-white/20 px-4 py-1.5 rounded-full hover:bg-white hover:text-black transition">GİRİŞ YAP</button>
-    </header>
-
-    <!-- Ana Kitap Kartı -->
-    <main class="max-w-lg mx-auto p-6">
-        <div class="bg-slate-900 p-8 rounded-[2rem] border border-slate-800 shadow-2xl text-center">
-            <div class="h-64 bg-gradient-to-br from-slate-800 to-black rounded-3xl mb-8 flex items-center justify-center border border-slate-700">
-                <span class="text-slate-600 font-bold">ROVE FİNANS V1</span>
+    <!-- Ana Ekran -->
+    <main class="max-w-md mx-auto">
+        <div class="bg-slate-900 border border-slate-800 p-8 rounded-[2rem] text-center shadow-2xl">
+            <div class="h-40 bg-gradient-to-tr from-slate-800 to-black rounded-3xl mb-6 flex items-center justify-center border border-slate-700">
+                <span class="text-2xl font-black">ROVE V1</span>
             </div>
-            <h2 class="text-2xl font-bold mb-2">Finansal Okuryazarlık Rehberi</h2>
-            <p class="text-slate-400 text-sm mb-8">Zenginliğin kodunu çözmek isteyenler için kapsamlı rehber.</p>
-            <button onclick="openBook()" class="w-full bg-white text-black py-4 rounded-2xl font-bold hover:bg-amber-500 transition">REHBERİ İNCELE</button>
+            <h2 class="text-xl font-bold mb-4">Finansal Okuryazarlık</h2>
+            <button onclick="checkAuth()" class="w-full bg-white text-black py-4 rounded-2xl font-bold hover:bg-amber-500 transition">İNCELE</button>
         </div>
     </main>
 
-    <!-- Modallar -->
-    <div id="auth-modal" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center p-6 z-50">
-        <div class="bg-white text-black p-8 rounded-[2rem] w-full max-w-sm">
-            <h2 class="font-bold text-lg mb-6">Hesabına Giriş Yap</h2>
-            <input id="email" type="email" placeholder="E-posta" class="w-full p-4 bg-slate-100 rounded-2xl mb-3">
-            <button onclick="login()" class="w-full bg-black text-white py-4 rounded-2xl font-bold">GİRİŞ YAP</button>
+    <!-- Doğrulama Akışı -->
+    <div id="modal-container" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center p-6 z-50">
+        <!-- Adım 1: E-posta -->
+        <div id="step-1" class="bg-white text-black p-8 rounded-[2rem] w-full max-w-sm">
+            <h2 class="font-bold text-xl mb-4">E-posta Doğrula</h2>
+            <input id="email-input" type="email" placeholder="Gmail adresin" class="w-full p-4 bg-slate-100 rounded-2xl mb-3">
+            <button onclick="sendCode()" class="w-full bg-black text-white py-4 rounded-2xl font-bold">KOD GÖNDER</button>
         </div>
-    </div>
+        
+        <!-- Adım 2: Kod Girişi -->
+        <div id="step-2" class="bg-white text-black p-8 rounded-[2rem] w-full max-w-sm hidden">
+            <h2 class="font-bold text-xl mb-4">Kodunu Gir</h2>
+            <p class="text-xs text-slate-500 mb-4" id="sent-to"></p>
+            <input id="code-input" type="text" placeholder="Gelen kod" class="w-full p-4 bg-slate-100 rounded-2xl mb-3 text-center tracking-widest text-xl">
+            <button onclick="verifyCode()" class="w-full bg-black text-white py-4 rounded-2xl font-bold">KAYDI TAMAMLA</button>
+        </div>
 
-    <div id="book-modal" class="fixed inset-0 bg-black/95 hidden flex items-center justify-center p-6 z-50">
-        <div class="bg-slate-900 p-8 rounded-[2rem] w-full max-w-lg text-left">
-            <h3 class="text-amber-500 text-2xl font-bold mb-4">Rehber İçeriği</h3>
-            <p class="text-slate-300 mb-8">Bu rehber, finansal özgürlüğün anahtarıdır. Tüm bölümlere erişmek için tam sürümü alabilirsin.</p>
-            <a href="https://shopier.com" class="block bg-amber-500 text-black text-center py-4 rounded-2xl font-black">TAM SÜRÜMÜ SATIN AL</a>
-            <button onclick="toggleModal('book-modal')" class="mt-4 w-full text-slate-500 text-xs">KAPAT</button>
+        <!-- Adım 3: Kitap Özeti (Başarılı) -->
+        <div id="step-3" class="bg-slate-900 text-white p-8 rounded-[2rem] w-full max-w-lg hidden text-left border border-slate-700">
+            <h2 class="text-2xl font-bold text-amber-500 mb-4">Kayıt Başarılı!</h2>
+            <p class="text-slate-400 mb-6 italic">"Finansal piyasalarda kalıcı olmanın yolu, sadece veriyi değil, sistemi yönetmektir."</p>
+            <a href="https://shopier.com" class="block bg-amber-500 text-black text-center py-4 rounded-2xl font-black mb-4">TAM SÜRÜMÜ SATIN AL</a>
+            <button onclick="location.reload()" class="w-full text-slate-600 text-xs underline">ÇIKIŞ YAP</button>
         </div>
     </div>
 
     <script>
-        function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
-        function login() { localStorage.setItem('user', 'active'); location.reload(); }
-        function openBook() {
-            if(!localStorage.getItem('user')) { toggleModal('auth-modal'); return; }
-            toggleModal('book-modal');
+        let generatedCode = "";
+
+        function sendCode() {
+            const email = document.getElementById('email-input').value;
+            if(!email.endsWith('@gmail.com')) { alert("Lütfen geçerli bir Gmail gir!"); return; }
+            
+            generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
+            alert("Simülasyon: Kodun " + generatedCode + " olarak oluşturuldu (Bunu kopyala).");
+            
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+            document.getElementById('sent-to').innerText = email + " adresine gönderildi.";
+        }
+
+        function verifyCode() {
+            const code = document.getElementById('code-input').value;
+            if(code === generatedCode) {
+                document.getElementById('step-2').classList.add('hidden');
+                document.getElementById('step-3').classList.remove('hidden');
+                localStorage.setItem('auth', 'true');
+            } else {
+                alert("Hatalı kod!");
+            }
+        }
+
+        function checkAuth() {
+            if(localStorage.getItem('auth')) {
+                document.getElementById('modal-container').classList.remove('hidden');
+                document.getElementById('step-1').classList.add('hidden');
+                document.getElementById('step-3').classList.remove('hidden');
+            } else {
+                document.getElementById('modal-container').classList.remove('hidden');
+            }
         }
     </script>
 </body>
