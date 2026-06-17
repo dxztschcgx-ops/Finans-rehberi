@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finans Rehberi - Caner Yılmaz</title>
-    <!-- Tailwind CSS (Mobilde kurulum gerekmeden çalışması için CDN kullanıyoruz) -->
+    <title>Finans Rehberi - Rove Management</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Canlı terminalin kayma efekti için basit bir animasyon */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -15,121 +14,134 @@
         .marquee-text {
             display: inline-block;
             animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+        .rove-logo {
+            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+            font-weight: lighter;
+            font-size: 8px;
+            color: rgba(255,255,255,0.7);
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
+<body class="bg-gray-50 font-sans antialiased text-gray-900">
 
     <!-- 1. ÜST NAVIGASYON (NAVBAR) -->
     <nav class="bg-[#0f2d4a] text-white p-4 sticky top-0 z-50 shadow-md">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
             <div class="flex items-center space-x-2">
-                <!-- Logomuz (Geçici olarak F harfi ikonu) -->
-                <div class="bg-blue-500 font-bold text-xl px-3 py-1 rounded">F</div>
+                <div class="bg-blue-500 font-bold text-xl px-3 py-1 rounded">R</div>
                 <div>
                     <h1 class="font-bold text-lg tracking-wide">FİNANS REHBERİ</h1>
-                    <p class="text-xs text-gray-300">Caner Yılmaz</p>
+                    <p class="text-xs text-gray-300">Rove Management</p>
                 </div>
             </div>
-            <!-- Menü Linkleri (Mobilde kolay tıklansın diye büyük ve aralıklı) -->
             <div class="flex flex-wrap justify-center gap-4 text-sm font-medium pt-2 md:pt-0">
                 <a href="#" class="text-yellow-400">Ana Sayfa</a>
-                <a href="#" class="hover:text-gray-300">Kitaplar</a>
+                <a href="#kitaplar" class="hover:text-gray-300">Kitaplar</a>
                 <a href="#" class="hover:text-gray-300">Blog</a>
-                <a href="#" class="hover:text-gray-300">Hakkımda</a>
                 <a href="#" class="hover:text-gray-300 flex items-center">
-                    Sepetim <span class="bg-yellow-500 text-slate-900 text-xs font-bold px-1.5 py-0.5 rounded-full ml-1">0</span>
+                    Sepetim <span id="cart-count" class="bg-yellow-500 text-slate-900 text-xs font-bold px-1.5 py-0.5 rounded-full ml-1">0</span>
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- 2. CANLI FİYAT TERMİNALİ (LIVE TERMINAL) -->
-    <div class="bg-black text-green-400 py-2 border-b border-gray-800 text-xs font-mono overflow-hidden whitespace-nowrap">
+    <!-- 2. CANLI FİYAT TERMİNALİ -->
+    <div class="bg-black text-green-400 py-2 border-b border-gray-800 text-xs font-mono overflow-hidden shadow-inner">
         <div class="marquee-text">
-            LIVE TERMINAL: 
+            <span class="font-bold">LIVE TERMINAL: </span>
             <span class="mx-2 text-white">[BTC/USD: <span id="btc-price">68,450.20</span> <span class="text-green-500">▲ +2.1%</span>]</span>
             <span class="mx-2 text-white">[ETH/USD: <span id="eth-price">3,012.50</span> <span class="text-green-500">▲ +1.5%</span>]</span>
             <span class="mx-2 text-white">[XAU/USD (ALTIN): <span id="gold-price">2,385.10</span> <span class="text-green-500">▲ +0.8%</span>]</span>
-            <span class="mx-2 text-white">[BIST 100: 10,250.70 <span class="text-green-500">▲ +1.9%</span>]</span>
+            <span class="mx-2 text-white">[BIST 100: <span id="bist-price">10,250.70</span> <span class="text-green-500">▲ +1.9%</span>]</span>
+            <span class="mx-2 text-white">[TRY/USD: <span id="try-price">32.55</span> <span class="text-green-500">▲ +0.3%</span>]</span>
             <span class="ml-4 text-gray-400">SON GÜNCELLEME: <span id="live-time">00:00:00</span></span>
         </div>
     </div>
 
-    <!-- 3. ANA GİRİŞ ALANI (HERO SECTION) -->
-    <header class="bg-white py-12 px-4 shadow-sm">
-        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-8">
+    <!-- 3. ANA GİRİŞ ALANI (HERO) -->
+    <header class="bg-white py-16 px-4 shadow-sm border-b border-gray-100">
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10">
             <div class="text-center md:text-left md:w-1/2">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight mb-4">
                     GELECEĞİNİ<br class="hidden md:inline"> ŞEKİLLENDİR
                 </h2>
-                <p class="text-gray-600 text-base mb-6 max-w-md mx-auto md:mx-0">
-                    Finansal özgürlüğe giden yolda doğru stratejiler ve dijital varlık analizleriyle kendi geleceğinizin mimarı olun.
+                <p class="text-gray-600 text-lg mb-8 max-w-md mx-auto md:mx-0">
+                    Finansal özgürlüğe giden yolda doğru stratejiler ve dijital varlık analizleriyle kendi geleceğinizin mimarı olun. Rove Management uzmanlığıyla hazırlanan kaynakları keşfedin.
                 </p>
-                <a href="#kitaplar" class="bg-[#0f2d4a] text-white font-semibold px-6 py-3 rounded shadow hover:bg-slate-800 transition block sm:inline-block">
-                    Kitapları İncele
-                </a>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                    <a href="#kitaplar" class="bg-[#0f2d4a] text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-slate-800 transition block text-center">
+                        Kitapları İncele
+                    </a>
+                </div>
             </div>
-            <!-- İllüstrasyon veya Grafik Alanı -->
             <div class="md:w-1/2 flex justify-center">
-                <div class="w-64 h-64 bg-gray-100 rounded-full flex items-center justify-center shadow-inner relative">
-                    <!-- Basit bir yukarı yönlü grafik emojisi/grafiği simülasyonu -->
-                    <span class="text-7xl">📈</span>
-                    <div class="absolute bottom-2 bg-slate-900 text-white text-xs px-3 py-1 rounded-full shadow">Yatırım & Analiz</div>
+                <div class="w-64 h-64 bg-gray-100 rounded-full flex items-center justify-center shadow-inner relative border border-gray-100">
+                    <span class="text-8xl">📈</span>
+                    <div class="absolute bottom-4 bg-slate-950 text-white text-xs px-4 py-1.5 rounded-full shadow-lg font-medium">Yatırım & Analiz</div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- 4. YENİ ÇIKAN KİTAPLARIM -->
-    <main id="kitaplar" class="container mx-auto px-4 py-12">
-        <h3 class="text-xl md:text-2xl font-bold text-center text-slate-950 mb-8 tracking-wide uppercase border-b pb-4">
-            YENİ ÇIKAN KİTAPLARIM
-        </h3>
+    <main id="kitaplar" class="container mx-auto px-4 py-16">
+        <div class="flex items-center justify-center gap-4 mb-12">
+            <div class="h-px bg-gray-200 flex-grow max-w-xs"></div>
+            <h3 class="text-2xl md:text-3xl font-extrabold text-center text-slate-950 tracking-wide uppercase">
+                YENİ ÇIKAN KİTAPLARIM
+            </h3>
+            <div class="h-px bg-gray-200 flex-grow max-w-xs"></div>
+        </div>
 
-        <!-- Kitap Kartları Izgarası (Grid) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
             
-            <!-- 1. Kitap -->
-            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex flex-col justify-between hover:shadow-lg transition">
+            <!-- 1. Kitap: FİNANS REHBERİ -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300">
                 <div>
-                    <!-- Kitap Kapağı Tasarımı -->
-                    <div class="w-40 h-56 bg-gradient-to-b from-slate-800 to-slate-950 rounded-lg mx-auto shadow-md mb-4 flex flex-col justify-between p-3 text-center border-l-4 border-yellow-500">
-                        <p class="text-[10px] text-yellow-500 font-bold tracking-widest">FİNANS REHBERİ</p>
-                        <p class="text-white text-xs font-bold leading-tight">TEMELLER VE STRATEJİLER</p>
-                        <p class="text-[9px] text-gray-400">Caner Yılmaz</p>
+                    <div class="w-44 h-64 bg-gradient-to-b from-slate-900 to-black rounded-xl mx-auto shadow-2xl mb-6 flex flex-col justify-between p-4 text-center border-l-4 border-yellow-500">
+                        <div class="rove-logo mt-1">R O V E Management</div>
+                        <div>
+                            <p class="text-white text-sm font-bold leading-tight tracking-wide mb-1">FİNANS REHBERİ</p>
+                            <p class="text-[10px] text-gray-300 font-medium">TEMELLER VE STRATEJİLER</p>
+                        </div>
+                        <div class="w-16 h-1 bg-yellow-500 mx-auto rounded-full mb-1"></div>
                     </div>
-                    <h4 class="font-bold text-base text-slate-900 text-center leading-tight">FİNANS REHBERİ: TEMELLER VE STRATEJİLER</h4>
-                    <p class="text-xs text-gray-500 text-center mt-1">CANER YILMAZ</p>
-                    <div class="text-yellow-500 text-center text-sm my-2">★ 4.8<span class="text-gray-400 text-xs">/5</span></div>
+                    <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">FİNANS REHBERİ:<br>TEMELLER VE STRATEJİLER</h4>
+                    <p class="text-sm text-gray-600 text-center mt-2 font-medium">ROVE MANAGEMENT</p>
+                    <div class="text-yellow-500 text-center text-lg my-3 font-bold">★ 4.8</div>
                 </div>
                 <div>
-                    <p class="text-center font-bold text-lg text-slate-900 my-2">120.00 TL</p>
-                    <div class="grid grid-cols-2 gap-2 text-xs font-bold">
-                        <button class="bg-gray-100 text-slate-800 py-2 rounded.hover:bg-gray-200 transition">İNCELE</button>
-                        <button class="bg-yellow-500 text-slate-900 py-2 rounded hover:bg-yellow-600 transition" onclick="alert('Sepete eklendi!')">SEPETE EKLE</button>
+                    <p class="text-center font-extrabold text-2xl text-slate-950 my-3">120.00 TL</p>
+                    <div class="grid grid-cols-2 gap-3 text-xs font-bold">
+                        <button onclick="openModal('finans')" class="bg-gray-100 text-slate-800 py-3 rounded-lg hover:bg-gray-200 transition">İNCELE</button>
+                        <button onclick="addToCart()" class="bg-yellow-500 text-slate-950 py-3 rounded-lg hover:bg-yellow-600 transition">SEPETE EKLE</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. Kitap -->
-            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex flex-col justify-between hover:shadow-lg transition">
+            <!-- 2. Kitap: DİJİTAL VARLIKLAR -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300">
                 <div>
-                    <!-- Kitap Kapağı Tasarımı -->
-                    <div class="w-40 h-56 bg-gradient-to-b from-teal-900 to-slate-950 rounded-lg mx-auto shadow-md mb-4 flex flex-col justify-between p-3 text-center border-l-4 border-teal-400">
-                        <p class="text-[10px] text-teal-400 font-bold tracking-widest">DİJİTAL VARLIKLAR</p>
-                        <p class="text-white text-xs font-bold leading-tight">BLOKZİNCİRİ & GELECEĞİN PARASI</p>
-                        <p class="text-[9px] text-gray-400">Caner Yılmaz</p>
+                    <div class="w-44 h-64 bg-gradient-to-b from-teal-950 to-black rounded-xl mx-auto shadow-2xl mb-6 flex flex-col justify-between p-4 text-center border-l-4 border-teal-400">
+                        <div class="rove-logo mt-1">R O V E Management</div>
+                        <div>
+                            <p class="text-white text-sm font-bold leading-tight tracking-wide mb-1">DİJİTAL VARLIKLAR</p>
+                            <p class="text-[10px] text-gray-300 font-medium">BLOKZİNCİRİ & GELECEĞİN PARASI</p>
+                        </div>
+                        <div class="w-16 h-1 bg-teal-400 mx-auto rounded-full mb-1"></div>
                     </div>
-                    <h4 class="font-bold text-base text-slate-900 text-center leading-tight">DİJİTAL VARLIKLAR VE BLOKZİNCİRİ</h4>
-                    <p class="text-xs text-gray-500 text-center mt-1">CANER YILMAZ</p>
-                    <div class="text-yellow-500 text-center text-sm my-2">★ 4.9<span class="text-gray-400 text-xs">/5</span></div>
+                    <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">DİJİTAL VARLIKLAR VE BLOKZİNCİRİ</h4>
+                    <p class="text-sm text-gray-600 text-center mt-2 font-medium">ROVE MANAGEMENT</p>
+                    <div class="text-yellow-500 text-center text-lg my-3 font-bold">★ 4.9</div>
                 </div>
                 <div>
-                    <p class="text-center font-bold text-lg text-slate-900 my-2">145.00 TL</p>
-                    <div class="grid grid-cols-2 gap-2 text-xs font-bold">
-                        <button class="bg-gray-100 text-slate-800 py-2 rounded hover:bg-gray-200 transition">İNCELE</button>
-                        <button class="bg-yellow-500 text-slate-900 py-2 rounded hover:bg-yellow-600 transition" onclick="alert('Sepete eklendi!')">SEPETE EKLE</button>
+                    <p class="text-center font-extrabold text-2xl text-slate-950 my-3">145.00 TL</p>
+                    <div class="grid grid-cols-2 gap-3 text-xs font-bold">
+                        <button onclick="openModal('dijital')" class="bg-gray-100 text-slate-800 py-3 rounded-lg hover:bg-gray-200 transition">İNCELE</button>
+                        <button onclick="addToCart()" class="bg-yellow-500 text-slate-950 py-3 rounded-lg hover:bg-yellow-600 transition">SEPETE EKLE</button>
                     </div>
                 </div>
             </div>
@@ -137,28 +149,70 @@
         </div>
     </main>
 
-    <!-- 5. CANLI VERİ VE SAAT JAVASCRIPT KODLARI -->
-    <script>
-        // Saat güncelleme fonksiyonu
-        function updateTime() {
-            const timeEl = document.getElementById('live-time');
-            const now = new Date();
-            timeEl.innerText = now.toLocaleTimeString('tr-TR');
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+    <!-- KİTAP DETAY PENCERESİ (MODAL) -->
+    <div id="book-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
 
-        // Basit simüle edilmiş canlı fiyat hareketleri (Gerçek API bağlantısını daha sonra buraya ekleyeceğiz)
-        function simulatePrices() {
-            const btc = 68450 + (Math.random() * 40 - 20);
-            const eth = 3012 + (Math.random() * 4 - 2);
-            const gold = 2385 + (Math.random() * 2 - 1);
-            
-            document.getElementById('btc-price').innerText = btc.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('eth-price').innerText = eth.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('gold-price').innerText = gold.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    <!-- 5. FOOTER -->
+    <footer class="bg-slate-950 text-gray-300 py-12 px-4 mt-16 border-t border-gray-800">
+        <div class="container mx-auto text-center">
+            <h5 class="font-bold text-white text-lg mb-2">Rove Management</h5>
+            <div class="text-xs text-gray-500">&copy; 2026 FİNANS REHBERİ. Tüm Hakları Saklıdır.</div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT MANTIKLARI -->
+    <script>
+        // Sepet Sayaç Mantığı
+        let cartCount = 0;
+        function addToCart() {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            alert('Ürün sepetinize eklendi!');
         }
-        setInterval(simulatePrices, 3000);
+
+        // Kitap Veritabanı (İçerikler)
+        const bookData = {
+            finans: {
+                title: "FİNANS REHBERİ: TEMELLER VE STRATEJİLER",
+                desc: "Finansal özgürlüğün kapılarını aralayın. Bu rehber, bütçe yönetiminden risk analizine kadar finans dünyasında sağlam adımlar atmanız için tasarlandı.",
+                chapters: ["Bölüm 1: Finansal Okuryazarlığın Temelleri", "Bölüm 2: Bütçe ve Nakit Akışı Yönetimi", "Bölüm 3: Geleneksel Yatırım Stratejileri", "Bölüm 4: Makroekonomik Göstergeleri Okuma"]
+            },
+            dijital: {
+                title: "DİJİTAL VARLIKLAR VE BLOKZİNCİRİ",
+                desc: "Geleceğin ekonomisinde yerinizi alın. Kripto paralar, merkeziyetsiz finans (DeFi) ve teknik analiz temellerini Rove Management ekolüyle kavrayın.",
+                chapters: ["Bölüm 1: Blokzinciri ve Bitcoin Nedir?", "Bölüm 2: Akıllı Sözleşmeler ve Ethereum", "Bölüm 3: İndikatörler (RSI, Bollinger Bantları vb.)", "Bölüm 4: Portföy ve Risk Yönetimi"]
+            }
+        };
+
+        function openModal(key) {
+            const book = bookData[key];
+            const content = document.getElementById('modal-content');
+            content.innerHTML = `
+                <h3 class="font-extrabold text-xl text-slate-950 mb-3">${book.title}</h3>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">${book.desc}</p>
+                <h4 class="font-bold text-sm text-slate-900 border-b pb-2 mb-2">KİTAP İÇERİĞİ:</h4>
+                <ul class="text-xs text-gray-600 space-y-1 mb-4">
+                    ${book.chapters.map(ch => `<li>• ${ch}</li>`).join('')}
+                </ul>
+                <div class="text-xs text-gray-400 italic">Yayıncı: Rove Management</div>
+            `;
+            document.getElementById('book-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('book-modal').classList.add('hidden');
+        }
+
+        // Saat güncelleme
+        function updateTime() {
+            document.getElementById('live-time').innerText = new Date().toLocaleTimeString('tr-TR');
+        }
+        setInterval(updateTime, 1000); updateTime();
     </script>
 </body>
 </html>
