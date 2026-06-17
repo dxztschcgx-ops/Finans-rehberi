@@ -81,6 +81,14 @@
                 <!-- İçerik Dinamik Yüklenecek -->
             </div>
 
+            <!-- 🛒 SATIN ALMA ALANI (Dinamik Buton Buraya Gelecek) -->
+            <div id="purchase-area" class="mt-4 hidden">
+                <!-- Buradaki linki kendi Shopier linkinle değiştirebilirsin Enes -->
+                <a href="https://www.shopier.com/KENDI_LINKIN" target="_blank" class="w-full block text-center bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-slate-950 font-black tracking-wide py-3.5 rounded-xl text-sm transition shadow-lg shadow-orange-500/10">
+                    💳 TAM SÜRÜMÜ SATIN AL (248 SAYFA)
+                </a>
+            </div>
+
             <div id="book-footer" class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-500">
                 <span>Rove & Co. Sürüm Modu</span>
                 <span id="page-status"></span>
@@ -96,14 +104,14 @@
     <script>
         // Durum Yönetimi
         let currentUser = JSON.parse(localStorage.getItem('rove_user')) || null;
-        let authMode = 'login'; // 'login' veya 'register'
+        let authMode = 'login';
 
-        // Kitap Veri Deposu (Yazdığımız Bölümler)
+        // Kitap Veri Deposu
         const bookData = {
             title: "Finansal Okuryazarlık Rehberi V1",
             preview: `
                 <h3 class="text-xl font-bold text-white mb-2">📖 İNCELEME PANELİ (Ön İzleme Modu)</h3>
-                <p class="text-slate-400 mb-4">Bu rehber, Rove & Co. tarafından premium kullanıcılar için hazırlanmıştır. Kitabın tam sürümüne erişmek ve 248 sayfalık derin analizi okumak için yönetici yetkisine sahip olmalısınız.</p>
+                <p class="text-slate-400 mb-4">Bu rehber, Rove & Co. tarafından premium kullanıcılar için hazırlanmıştır. Kitabın tam sürümüne erişmek ve 248 sayfalık derin analizi okumak için tam sürümü satın almanız gerekmektedir.</p>
                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
                     <h4 class="font-bold text-white mb-2 text-sm text-amber-500">📌 İÇİNDEKİLER (Özet)</h4>
                     <ul class="space-y-1 text-xs text-slate-400">
@@ -125,36 +133,33 @@
             fullText: `
                 <h2 class="text-2xl font-black text-white border-b border-slate-800 pb-2 text-amber-500">👑 ROVE MANAGEMENT FULL ACCESS (248 SAYFA METİN MODU)</h2>
                 
-                <div>
+                <div class="mt-4">
                     <h3 class="text-lg font-bold text-white mb-2">🏛️ BÖLÜM 1: Finansal Okuryazarlığın Temelleri</h3>
-                    <p>Finansal özgürlüğe giden yol, paranın dilini ve onun arkasındaki matematiksel felsefeyi anlamaktan geçer. Tarih boyunca para; deniz kabuklarından kıymetli metallere, kağıt banknotlardan günümüzdeki dijital verilere kadar sürekli bir evrim geçirmiştir. Ancak paranın formu değişse de ardındaki temel kural hiç değişmemiştir: Para bir değer saklama ve takas aracıdır.</p>
-                    <p class="mt-2 font-semibold text-slate-400">Aktif ve Pasif Varlıklar:</p>
-                    <p>Aktifler siz uyurken cebinize para koyar (Hisse, Fon, Kiralık Mülk, Botlar). Pasifler ise cebinizden sürekli para çıkarır (Lüks araba, son model telefon, borçlar). Zenginler aktif biriktirir, orta sınıf zengin görünmek için pasif biriktirir.</p>
+                    <p>Finansal özgürlüğe giden yol, paranın dilini ve onun arkasındaki matematiksel felsefeyi anlamaktan geçer. Aktifler siz uyurken cebinize para koyar (Hisse, Fon, Kiralık Mülk, Botlar). Pasifler ise cebinizden sürekli para çıkarır (Lüks araba, son model telefon, borçlar).</p>
                 </div>
 
-                <div>
+                <div class="mt-4">
                     <h3 class="text-lg font-bold text-white mb-2">📊 BÖLÜM 2: Bütçe ve Nakit Akışı Yönetimi</h3>
-                    <p>50/30/20 Kuralı: Gelirinizin %50'sini zorunlu ihtiyaçlara, %30'unu kişisel isteklere ayırın. Kalan %20'yi ise hesap açılır açılmaz doğrudan yatırıma aktarın. Zorunlu harcamalarınızın 3-6 katı büyüklükte bir Acil Durum Fonu inşa etmeden agresif yatırımlara başlamayın.</p>
+                    <p>50/30/20 Kuralı: Gelirinizin %50'sini zorunlu ihtiyaçlara, %30'unu kişisel isteklere ayırın. Kalan %20'yi ise hesap açılır açılmaz doğrudan yatırıma aktarın.</p>
                 </div>
 
-                <div>
+                <div class="mt-4">
                     <h3 class="text-lg font-bold text-white mb-2">📈 BÖLÜM 3: Hisse Senetleri ve Borsa Yatırımcılığı</h3>
-                    <p>Borsa bir kumarhane değildir, bir şirket ortaklığı müessesesidir. Temel analiz ile ucuz ve kârlı şirketi seçin, teknik analiz ile doğru fiyattan alım yapın. Temettü (kâr payı) gelirlerini harcamayıp tekrar hisseye yatırarak bileşik getirinin gücünü açığa çıkarın.</p>
+                    <p>Borsa bir kumarhane değildir, bir şirket ortaklığı müessesesidir. Temel analiz ile ucuz ve kârlı şirketi seçin, teknik analiz ile doğru fiyattan alım yapın.</p>
                 </div>
 
-                <div>
+                <div class="mt-4">
                     <h3 class="text-lg font-bold text-white mb-2">🪙 BÖLÜM 4: Kripto Para Piyasaları ve Dijital Varlıklar</h3>
-                    <p>Bitcoin sınırlı 21 milyon arzıyla dijital altındır. Kripto trade ederken RSI indikatörü 30'un altına indiğinde aşırı satımdan toplama yapın, 70'in üzerine çıktığında kar realize edin. Bollinger alt bandı destek, üst bandı dirençtir. Kaldıraçtan uzak durun.</p>
+                    <p>Bitcoin sınırlı 21 milyon arzıyla dijital altındır. Kripto trade ederken RSI indikatörü 30'un altına indiğinde aşırı satımdan toplama yapın, 70'in üzerine çıktığında kar realize edin.</p>
                 </div>
 
-                <div>
+                <div class="mt-4">
                     <h3 class="text-lg font-bold text-white mb-2">🚀 BÖLÜM 5 - BÖLÜM 12: İleri Seviye Kaldıraçlar ve Stratejiler</h3>
-                    <p>E-ticarette Shopify ve Printify kullanarak sıfır stok riskiyle premium markanızı kurun. Kod ve medya kaldıracını kullanarak (Node.js/Python botları ve sosyal medya algoritmaları) 7/24 çalışan dijital işçiler üretin. Finansal psikolojide FOMO ve FUD dalgalarına kapılmayan, 4% kuralı ile özgürlük rakamını hesaplayan yatırımcı nihai finansal özgürlüğe ulaşır.</p>
+                    <p>E-ticarette Shopify ve Printify kullanarak sıfır stok riskiyle premium markanızı kurun. Kod ve medya kaldıracını kullanarak (Node.js/Python botları ve sosyal medya algoritmaları) 7/24 çalışan dijital işçiler üretin.</p>
                 </div>
             `
         };
 
-        // Başlangıç Kurulumu
         updateAuthUI();
 
         function toggleModal(id) {
@@ -180,14 +185,12 @@
             }
         }
 
-        // Kimlik Doğrulama İşlemleri
         function handleAuth(e) {
             e.preventDefault();
             const email = document.getElementById('auth-email').value;
             const password = document.getElementById('auth-password').value;
             const msgDiv = document.getElementById('auth-msg');
 
-            // 👑 ENES'E ÖZEL GİZLİ GİRİŞ KONTROLÜ
             if (email === 'admin@rove.com' && password === 'rove2026') {
                 currentUser = { email: email, role: 'admin' };
                 localStorage.setItem('rove_user', JSON.stringify(currentUser));
@@ -200,7 +203,6 @@
             let users = JSON.parse(localStorage.getItem('rove_registered_users')) || [];
 
             if (authMode === 'register') {
-                // Kayıt Olma
                 if (users.some(u => u.email === email)) {
                     msgDiv.innerText = "Bu e-posta zaten kayıtlı!";
                     msgDiv.classList.remove('hidden');
@@ -213,7 +215,6 @@
                 localStorage.setItem('rove_user', JSON.stringify(currentUser));
                 toggleModal('auth-modal');
             } else {
-                // Giriş Yapma
                 const user = users.find(u => u.email === email && u.password === password);
                 if (!user) {
                     msgDiv.innerText = "Hatalı e-posta veya şifre!";
@@ -248,7 +249,6 @@
             }
         }
 
-        // Kitap Açma Paneli Kontrolü
         function openBook() {
             if (!currentUser) {
                 alert("Kitabı incelemek için lütfen önce Giriş Yapın veya Kayıt Olun!");
@@ -259,17 +259,18 @@
             const header = document.getElementById('book-header');
             const body = document.getElementById('book-body');
             const pageStatus = document.getElementById('page-status');
+            const purchaseArea = document.getElementById('purchase-area');
 
             header.innerHTML = `<h2 class="text-xl font-bold text-white">${bookData.title}</h2>`;
 
             if (currentUser.role === 'admin') {
-                // Enes giriş yaptıysa her şeyi görsün
                 body.innerHTML = bookData.fullText;
                 pageStatus.innerText = "Tam Sürüm: 248 Sayfa Aktif";
+                purchaseArea.classList.add('hidden'); // Kurucuya buton gizli
             } else {
-                // Normal kullanıcı giriş yaptıysa sadece ön izlemeyi görsün
                 body.innerHTML = bookData.preview;
                 pageStatus.innerText = "Kısıtlı Ön İzleme Modu";
+                purchaseArea.classList.remove('hidden'); // Normal üyeye buton açık!
             }
 
             toggleModal('book-modal');
