@@ -3,376 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finans Rehberi - Rove Management</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Rove Finance - Premium Rehber</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .marquee-text {
-            display: inline-block;
-            animation: marquee 25s linear infinite;
-            white-space: nowrap;
-        }
-        .rove-logo {
-            letter-spacing: 4px;
-            font-family: 'Georgia', serif;
-            font-weight: 300;
-            font-size: 9px;
-        }
-        .book-shadow {
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .book-spine {
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.25) 100%);
-        }
+        /* Kitap sayfa akışı için özel kaydırma çubuğu */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased text-gray-900">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
 
-    <!-- 1. NAVBAR -->
-    <nav class="bg-[#0f2d4a] text-white p-4 sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-            <div class="flex items-center space-x-2">
-                <div class="bg-blue-500 font-bold text-xl px-3 py-1 rounded">R</div>
-                <div>
-                    <h1 class="font-bold text-lg tracking-wide">FİNANS REHBERİ</h1>
-                    <p class="text-xs text-gray-300">Rove Management</p>
-                </div>
-            </div>
-            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium pt-2 md:pt-0 items-center">
-                <a href="#" class="text-yellow-400">Ana Sayfa</a>
-                <a href="#kitaplar" class="hover:text-gray-300">Kitaplar</a>
-                <div id="user-status-area">
-                    <button onclick="openAuthModal()" class="bg-yellow-500 text-slate-900 px-3 py-1 rounded-md text-xs font-bold hover:bg-yellow-600 transition">Giriş Yap / Kayıt Ol</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 2. LIVE TERMINAL -->
-    <div class="bg-black text-green-400 py-2 border-b border-gray-800 text-xs font-mono overflow-hidden shadow-inner">
-        <div class="marquee-text">
-            <span class="font-bold">LIVE TERMINAL: </span>
-            <span class="mx-2 text-white">[BTC/USD: <span id="btc-price">68,450.20</span> <span class="text-green-500">▲ +2.1%</span>]</span>
-            <span class="mx-2 text-white">[ETH/USD: <span id="eth-price">3,012.50</span> <span class="text-green-500">▲ +1.5%</span>]</span>
-            <span class="mx-2 text-white">[XAU/USD (ALTIN): <span id="gold-price">2,385.10</span> <span class="text-green-500">▲ +0.8%</span>]</span>
-            <span class="mx-2 text-white">[BIST 100: <span id="bist-price">10,250.70</span> <span class="text-green-500">▲ +1.9%</span>]</span>
-            <span class="mx-2 text-white">[TRY/USD: <span id="try-price">32.55</span> <span class="text-green-500">▲ +0.3%</span>]</span>
-            <span class="ml-4 text-gray-400">SON GÜNCELLEME: <span id="live-time">00:00:00</span></span>
-        </div>
-    </div>
-
-    <!-- 3. HERO SECTION -->
-    <header class="bg-white py-16 px-4 shadow-sm border-b border-gray-100">
-        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10">
-            <div class="text-center md:text-left md:w-1/2">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight mb-4">
-                    GELECEĞİNİ<br class="hidden md:inline"> ŞEKİLLENDİR
-                </h2>
-                <p class="text-gray-600 text-lg mb-8 max-w-md mx-auto md:mx-0">
-                    Finansal özgürlüğe giden yolda doğru stratejilerpt ve dijital varlık analizleriyle kendi geleceğinizin mimarı olun. Rove Management uzmanlığıyla hazırlanan kaynakları keşfedin.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-                    <a href="#kitaplar" class="bg-[#0f2d4a] text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-slate-800 transition block text-center">
-                        Kitapları İncele
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="w-64 h-64 bg-gray-100 rounded-full flex items-center justify-center shadow-inner relative border border-gray-100">
-                    <span class="text-8xl">📈</span>
-                    <div class="absolute bottom-4 bg-slate-950 text-white text-xs px-4 py-1.5 rounded-full shadow-lg font-medium">Yatırım & Analiz</div>
-                </div>
-            </div>
+    <!-- Üst Menü -->
+    <header class="p-6 flex justify-between items-center max-w-6xl w-full mx-auto">
+        <div class="text-2xl font-black tracking-widest text-white">ROVE & CO.</div>
+        <div id="auth-status-area">
+            <button onclick="toggleModal('auth-modal')" class="bg-white text-slate-950 font-bold px-5 py-2 rounded-full text-sm hover:bg-slate-200 transition">Giriş Yap / Kayıt Ol</button>
         </div>
     </header>
 
-    <!-- 4. KİTAPLARIMIZ -->
-    <main id="kitaplar" class="container mx-auto px-4 py-16">
-        <div class="flex items-center justify-center gap-4 mb-14">
-            <div class="h-px bg-gray-200 flex-grow max-w-xs"></div>
-            <h3 class="text-2xl md:text-3xl font-extrabold text-center text-slate-950 tracking-wide uppercase">
-                YENİ ÇIKAN KİTAPLARIM
-            </h3>
-            <div class="h-px bg-gray-200 flex-grow max-w-xs"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            
-            <!-- 1. Kitap: FİNANS REHBERİ -->
-            <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300 relative overflow-hidden">
-                <div>
-                    <div class="w-48 h-68 bg-gradient-to-br from-[#0c1f33] via-[#163654] to-[#050d14] rounded-2xl mx-auto book-shadow mb-8 flex flex-col justify-between p-5 text-center relative border border-slate-800/50">
-                        <div class="absolute left-0 top-0 bottom-0 w-3 rounded-l-2xl book-spine border-r border-black/10"></div>
-                        <div class="rove-logo text-amber-400 font-light uppercase tracking-[0.25em] z-10">Rove Management</div>
-                        <div class="my-auto py-4 border-y border-amber-500/20 mx-2 z-10">
-                            <p class="text-white text-base font-black tracking-widest leading-tight mb-1 font-serif">FİNANS REHBERİ</p>
-                            <p class="text-[9px] text-amber-400 font-bold uppercase tracking-widest">Temeller & Stratejiler</p>
-                        </div>
-                        <div class="flex flex-col items-center gap-2 z-10">
-                            <div class="w-8 h-[2px] bg-amber-400 rounded-full"></div>
-                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / REHBER</p>
-                        </div>
-                    </div>
-                    <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">FİNANS REHBERİ:<br>TEMELLER VE STRATEJİLER</h4>
-                    <p class="text-sm text-gray-500 text-center mt-2 font-medium tracking-wide">ROVE MANAGEMENT EDİTORYAL</p>
-                    <div class="text-amber-500 text-center text-sm my-3 font-bold flex items-center justify-center gap-1">
-                        <span>★ 4.8</span><span class="text-gray-300 text-xs font-normal">(124 Değerlendirme)</span>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <p class="text-center font-black text-2xl text-slate-950 my-3">120.00 TL</p>
-                    <div class="grid grid-cols-2 gap-3 text-xs font-bold">
-                        <button onclick="handleInceleClick('finans')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">İNCELE</button>
-                        <button onclick="redirectToStore('finans')" class="bg-amber-500 text-slate-950 py-3.5 rounded-xl hover:bg-amber-600 transition tracking-wider">SATIN AL</button>
-                    </div>
-                </div>
+    <!-- Ana İçerik -->
+    <main class="max-w-4xl mx-auto px-6 text-center py-12 flex-grow flex flex-col justify-center items-center">
+        <span class="text-xs font-bold tracking-widest text-slate-500 uppercase bg-slate-900 px-3 py-1 rounded-full mb-4">Elite Financial Intelligence</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight max-w-2xl mb-6">Finansal İmparatorluğunu İnşa Et</h1>
+        <p class="text-slate-400 text-lg max-w-xl mb-8">Rove & Co. tarafından hazırlanan, aktif varlık yönetiminden e-ticaret kaldıraçlarına kadar uzanan rehber serisi.</p>
+        
+        <!-- Kitap Kartı -->
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl max-w-sm w-full text-left shadow-2xl">
+            <div class="h-48 bg-gradient-to-br from-slate-800 to-slate-950 rounded-xl mb-4 flex items-center justify-center border border-slate-700">
+                <span class="text-xl font-bold tracking-wider text-slate-400">ROVE FİNANS V1</span>
             </div>
-
-            <!-- 2. Kitap: DİJİTAL VARLIKLAR -->
-            <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition duration-300 relative overflow-hidden">
-                <div>
-                    <div class="w-48 h-68 bg-gradient-to-br from-[#0a2321] via-[#123d3a] to-[#020a0a] rounded-2xl mx-auto book-shadow mb-8 flex flex-col justify-between p-5 text-center relative border border-teal-950/50">
-                        <div class="absolute left-0 top-0 bottom-0 w-3 rounded-l-2xl book-spine border-r border-black/10"></div>
-                        <div class="rove-logo text-teal-400 font-light uppercase tracking-[0.25em] z-10">Rove Management</div>
-                        <div class="my-auto py-4 border-y border-teal-400/20 mx-2 z-10">
-                            <p class="text-white text-base font-black tracking-widest leading-tight mb-1 font-serif">DİJİTAL VARLIKLAR</p>
-                            <p class="text-[9px] text-teal-300 font-bold uppercase tracking-widest">Blokzinciri & Analiz</p>
-                        </div>
-                        <div class="flex flex-col items-center gap-2 z-10">
-                            <div class="w-8 h-[2px] bg-teal-400 rounded-full"></div>
-                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / REHBER</p>
-                        </div>
-                    </div>
-                    <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">DİJİTAL VARLIKLAR VE BLOKZİNCİRİ</h4>
-                    <p class="text-sm text-gray-500 text-center mt-2 font-medium tracking-wide">ROVE MANAGEMENT EDİTORYAL</p>
-                    <div class="text-amber-500 text-center text-sm my-3 font-bold flex items-center justify-center gap-1">
-                        <span>★ 4.9</span><span class="text-gray-300 text-xs font-normal">(186 Değerlendirme)</span>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <p class="text-center font-black text-2xl text-slate-950 my-3">145.00 TL</p>
-                    <div class="grid grid-cols-2 gap-3 text-xs font-bold">
-                        <button onclick="handleInceleClick('dijital')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">İNCELE</button>
-                        <button onclick="redirectToStore('dijital')" class="bg-amber-500 text-slate-950 py-3.5 rounded-xl hover:bg-amber-600 transition tracking-wider">SATIN AL</button>
-                    </div>
-                </div>
-            </div>
-
+            <h3 class="text-lg font-bold text-white mb-1">Finansal Okuryazarlık Rehberi</h3>
+            <p class="text-xs text-slate-500 mb-4">Bütçe, Borsa, Kripto ve Girişimcilik Kaldıraçları</p>
+            <button onclick="openBook()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2.5 rounded-xl text-sm transition text-center">İncele</button>
         </div>
     </main>
 
-    <!-- KİTAP DETAY PENCERESİ (MODAL) -->
-    <div id="book-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl max-w-xl w-full max-h-[85vh] overflow-y-auto p-6 shadow-2xl relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
-            <div id="modal-content"></div>
+    <!-- GİRİŞ / KAYIT MODAL -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white text-slate-900 p-8 rounded-2xl max-w-md w-full relative shadow-2xl">
+            <button onclick="toggleModal('auth-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+            
+            <!-- Sekmeler -->
+            <div class="flex border-b border-slate-200 mb-6">
+                <button id="tab-login-btn" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-center font-bold text-sm border-b-2 border-slate-950 text-slate-950">Giriş Yap</button>
+                <button id="tab-register-btn" onclick="switchAuthTab('register')" class="flex-1 pb-3 text-center font-semibold text-sm border-b-2 border-transparent text-slate-400 hover:text-slate-600">Kayıt Ol</button>
+            </div>
+
+            <div id="auth-msg" class="text-xs text-center mb-4 hidden bg-red-50 text-red-600 p-2 rounded-lg"></div>
+
+            <!-- Form -->
+            <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold text-slate-500 block mb-1">E-posta Adresi</label>
+                    <input type="email" id="auth-email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-slate-950" placeholder="ornek@mail.com">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-500 block mb-1">Şifre</label>
+                    <input type="password" id="auth-password" required class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:border-slate-950" placeholder="••••••••">
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full bg-slate-950 text-white font-bold py-3 rounded-xl text-sm hover:bg-slate-800 transition">Giriş Yap</button>
+            </form>
         </div>
     </div>
 
-    <!-- GİRİŞ / KAYIT PENCERESİ (AUTH MODAL) -->
-    <div id="auth-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative">
-            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
-            <h3 class="font-extrabold text-xl text-slate-950 mb-4 text-center">Rove Giriş Sistemi</h3>
+    <!-- KİTAP OKUMA MODAL -->
+    <div id="book-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col justify-between relative shadow-2xl">
+            <button onclick="toggleModal('book-modal')" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 text-2xl">&times;</button>
             
-            <div class="space-y-3">
-                <div>
-                    <label class="text-xs font-bold text-gray-600 block mb-1">E-posta veya Kullanıcı Adı</label>
-                    <input type="text" id="auth-email" placeholder="enes veya e-posta" class="w-full border p-2 rounded-lg text-sm focus:outline-none focus:border-[#0f2d4a]">
-                </div>
-                <div id="password-field" class="hidden">
-                    <label class="text-xs font-bold text-gray-600 block mb-1">Admin Şifresi</label>
-                    <input type="password" id="auth-pass" placeholder="••••••••" class="w-full border p-2 rounded-lg text-sm focus:outline-none focus:border-[#0f2d4a]">
-                </div>
-                <button onclick="simulateLogin()" class="w-full bg-[#0f2d4a] text-white py-2.5 rounded-lg text-sm font-bold shadow hover:bg-slate-800 transition mt-2">Giriş Yap</button>
-                <p class="text-[10px] text-gray-400 text-center">Kullanıcılar için inceleme paneli, yöneticiler için tam metin okuma modu.</p>
+            <div id="book-header" class="mb-4">
+                <!-- Dinamik Başlık Gelecek -->
+            </div>
+
+            <!-- Kitap İçeriği (Kaydırılabilir Alan) -->
+            <div id="book-body" class="flex-grow overflow-y-auto pr-2 custom-scroll space-y-6 text-slate-300 text-sm md:text-base leading-relaxed">
+                <!-- İçerik Dinamik Yüklenecek -->
+            </div>
+
+            <div id="book-footer" class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-500">
+                <span>Rove & Co. Sürüm Modu</span>
+                <span id="page-status"></span>
             </div>
         </div>
     </div>
 
-    <!-- 5. FOOTER -->
-    <footer class="bg-slate-950 text-gray-300 py-12 px-4 mt-16 border-t border-gray-800">
-        <div class="container mx-auto text-center">
-            <h5 class="font-bold text-white text-lg mb-2">Rove Management</h5>
-            <div class="text-xs text-gray-500">&copy; 2026 FİNANS REHBERİ. Tüm Hakları Saklıdır.</div>
-        </div>
+    <!-- Alt Bilgi -->
+    <footer class="p-6 text-center text-xs text-slate-600 border-t border-slate-900 max-w-6xl w-full mx-auto">
+        &copy; 2026 Rove & Co. Tüm Hakları Saklıdır.
     </footer>
 
-    <!-- JAVASCRIPT MANTIKLARI -->
     <script>
-        let currentUser = null; // Giriş yapan kullanıcıyı tutar
+        // Durum Yönetimi
+        let currentUser = JSON.parse(localStorage.getItem('rove_user')) || null;
+        let authMode = 'login'; // 'login' veya 'register'
 
-        const storeLinks = {
-            finans: "FİNANS_REHBERİ_SHOPİER_LİNKİNİ_BURAYA_YAPIŞTIR",
-            dijital: "DİJİTAL_VARLIKLAR_SHOPİER_LİNKİNİ_BURAYA_YAPIŞTIR"
+        // Kitap Veri Deposu (Yazdığımız Bölümler)
+        const bookData = {
+            title: "Finansal Okuryazarlık Rehberi V1",
+            preview: `
+                <h3 class="text-xl font-bold text-white mb-2">📖 İNCELEME PANELİ (Ön İzleme Modu)</h3>
+                <p class="text-slate-400 mb-4">Bu rehber, Rove & Co. tarafından premium kullanıcılar için hazırlanmıştır. Kitabın tam sürümüne erişmek ve 248 sayfalık derin analizi okumak için yönetici yetkisine sahip olmalısınız.</p>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <h4 class="font-bold text-white mb-2 text-sm text-amber-500">📌 İÇİNDEKİLER (Özet)</h4>
+                    <ul class="space-y-1 text-xs text-slate-400">
+                        <li>Bölüm 1: Finansal Okuryazarlığın Temelleri (Aktif/Pasif Dengesi)</li>
+                        <li>Bölüm 2: Bütçe ve Nakit Akışı Yönetimi (50/30/20 Kuralı)</li>
+                        <li>Bölüm 3: Hisse Senetleri ve Borsa Yatırımcılığı</li>
+                        <li>Bölüm 4: Kripto Para Piyasaları ve Dijital Varlıklar (RSI & Bollinger)</li>
+                        <li>Bölüm 5: Emtialar, Altın ve Güvenli Liman Yatırımları</li>
+                        <li>Bölüm 6: Gayrimenkul Yatırımları ve Kira Getirili Aktifler</li>
+                        <li>Bölüm 7: Girişimcilik, E-Ticaret, Shopify & Printify Stratejileri</li>
+                        <li>Bölüm 8: Kaldıraç Çeşitleri (Kod ve Medya Kaldıracı)</li>
+                        <li>Bölüm 9: Vergi, Hukuk ve Şirket Yapıları</li>
+                        <li>Bölüm 10: Finansal Psikoloji (FOMO & FUD Kontrolü)</li>
+                        <li>Bölüm 11: Borç Yönetimi ve Kartopu Yöntemi</li>
+                        <li>Bölüm 12: Büyük Final - Finansal Özgürlük Planı</li>
+                    </ul>
+                </div>
+            `,
+            fullText: `
+                <h2 class="text-2xl font-black text-white border-b border-slate-800 pb-2 text-amber-500">👑 ROVE MANAGEMENT FULL ACCESS (248 SAYFA METİN MODU)</h2>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">🏛️ BÖLÜM 1: Finansal Okuryazarlığın Temelleri</h3>
+                    <p>Finansal özgürlüğe giden yol, paranın dilini ve onun arkasındaki matematiksel felsefeyi anlamaktan geçer. Tarih boyunca para; deniz kabuklarından kıymetli metallere, kağıt banknotlardan günümüzdeki dijital verilere kadar sürekli bir evrim geçirmiştir. Ancak paranın formu değişse de ardındaki temel kural hiç değişmemiştir: Para bir değer saklama ve takas aracıdır.</p>
+                    <p class="mt-2 font-semibold text-slate-400">Aktif ve Pasif Varlıklar:</p>
+                    <p>Aktifler siz uyurken cebinize para koyar (Hisse, Fon, Kiralık Mülk, Botlar). Pasifler ise cebinizden sürekli para çıkarır (Lüks araba, son model telefon, borçlar). Zenginler aktif biriktirir, orta sınıf zengin görünmek için pasif biriktirir.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">📊 BÖLÜM 2: Bütçe ve Nakit Akışı Yönetimi</h3>
+                    <p>50/30/20 Kuralı: Gelirinizin %50'sini zorunlu ihtiyaçlara, %30'unu kişisel isteklere ayırın. Kalan %20'yi ise hesap açılır açılmaz doğrudan yatırıma aktarın. Zorunlu harcamalarınızın 3-6 katı büyüklükte bir Acil Durum Fonu inşa etmeden agresif yatırımlara başlamayın.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">📈 BÖLÜM 3: Hisse Senetleri ve Borsa Yatırımcılığı</h3>
+                    <p>Borsa bir kumarhane değildir, bir şirket ortaklığı müessesesidir. Temel analiz ile ucuz ve kârlı şirketi seçin, teknik analiz ile doğru fiyattan alım yapın. Temettü (kâr payı) gelirlerini harcamayıp tekrar hisseye yatırarak bileşik getirinin gücünü açığa çıkarın.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">🪙 BÖLÜM 4: Kripto Para Piyasaları ve Dijital Varlıklar</h3>
+                    <p>Bitcoin sınırlı 21 milyon arzıyla dijital altındır. Kripto trade ederken RSI indikatörü 30'un altına indiğinde aşırı satımdan toplama yapın, 70'in üzerine çıktığında kar realize edin. Bollinger alt bandı destek, üst bandı dirençtir. Kaldıraçtan uzak durun.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-2">🚀 BÖLÜM 5 - BÖLÜM 12: İleri Seviye Kaldıraçlar ve Stratejiler</h3>
+                    <p>E-ticarette Shopify ve Printify kullanarak sıfır stok riskiyle premium markanızı kurun. Kod ve medya kaldıracını kullanarak (Node.js/Python botları ve sosyal medya algoritmaları) 7/24 çalışan dijital işçiler üretin. Finansal psikolojide FOMO ve FUD dalgalarına kapılmayan, 4% kuralı ile özgürlük rakamını hesaplayan yatırımcı nihai finansal özgürlüğe ulaşır.</p>
+                </div>
+            `
         };
 
-        // Girdiyi dinleyip enes yazılırsa şifre alanını açan mekanizma
-        document.getElementById('auth-email').addEventListener('input', function(e) {
-            const passwordField = document.getElementById('password-field');
-            if(e.target.value.toLowerCase() === 'enes') {
-                passwordField.classList.remove('hidden');
-            } else {
-                passwordField.classList.add('hidden');
-            }
-        });
+        // Başlangıç Kurulumu
+        updateAuthUI();
 
-        function redirectToStore(key) {
-            const link = storeLinks[key];
-            if(link.includes("YAPIŞTIR")) {
-                alert("Rove Sistem Mesajı: Mağaza onay sürecindedir.");
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+            document.getElementById('auth-msg').classList.add('hidden');
+        }
+
+        function switchAuthTab(type) {
+            authMode = type;
+            const loginBtn = document.getElementById('tab-login-btn');
+            const registerBtn = document.getElementById('tab-register-btn');
+            const submitBtn = document.getElementById('auth-submit-btn');
+
+            if (type === 'login') {
+                loginBtn.className = "flex-1 pb-3 text-center font-bold text-sm border-b-2 border-slate-950 text-slate-950";
+                registerBtn.className = "flex-1 pb-3 text-center font-semibold text-sm border-b-2 border-transparent text-slate-400 hover:text-slate-600";
+                submitBtn.innerText = "Giriş Yap";
             } else {
-                window.open(link, '_blank');
+                registerBtn.className = "flex-1 pb-3 text-center font-bold text-sm border-b-2 border-slate-950 text-slate-950";
+                loginBtn.className = "flex-1 pb-3 text-center font-semibold text-sm border-b-2 border-transparent text-slate-400 hover:text-slate-600";
+                submitBtn.innerText = "Kayıt Ol";
             }
         }
 
-        function checkUserStatus() {
-            const savedUser = localStorage.getItem('rove_session');
-            if(savedUser) {
-                currentUser = savedUser;
-                if(currentUser === 'enes') {
-                    document.getElementById('user-status-area').innerHTML = `
-                        <span class="text-xs font-bold text-yellow-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-yellow-500 animate-pulse">👑 Rove Kurucusu</span>
-                        <button onclick="logout()" class="text-xs text-red-400 underline ml-2">Çıkış</button>
-                    `;
-                } else {
-                    document.getElementById('user-status-area').innerHTML = `
-                        <span class="text-xs font-medium text-gray-300 bg-slate-800 px-3 py-1.5 rounded-lg">👤 Ziyaretçi</span>
-                        <button onclick="logout()" class="text-xs text-red-400 underline ml-2">Çıkış</button>
-                    `;
-                }
-            } else {
-                currentUser = null;
-                document.getElementById('user-status-area').innerHTML = `
-                    <button onclick="openAuthModal()" class="bg-yellow-500 text-slate-900 px-3 py-1 rounded-md text-xs font-bold hover:bg-yellow-600 transition">Giriş Yap</button>
-                `;
-            }
-        }
+        // Kimlik Doğrulama İşlemleri
+        function handleAuth(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const msgDiv = document.getElementById('auth-msg');
 
-        function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
-
-        function simulateLogin() {
-            const input = document.getElementById('auth-email').value.trim().toLowerCase();
-            const pass = document.getElementById('auth-pass').value;
-
-            if(input === 'enes') {
-                // Şifreyi kendi istediğin bir şeyle değiştirebilirsin (Şu anlık: 1234)
-                if(pass === '1234') {
-                    localStorage.setItem('rove_session', 'enes');
-                    alert('Hoş geldin Enes! Kitapların tam metin okuma modu senin için aktif edildi.');
-                } else {
-                    alert('Kurucu şifresi hatalı!');
-                    return;
-                }
-            } else if(input.includes('@')) {
-                localStorage.setItem('rove_session', 'customer');
-                alert('Ziyaretçi girişi yapıldı. Kitap özetlerini inceleyebilirsiniz.');
-            } else {
-                alert('Lütfen geçerli bir e-posta veya kurucu adı girin.');
+            // 👑 ENES'E ÖZEL GİZLİ GİRİŞ KONTROLÜ
+            if (email === 'admin@rove.com' && password === 'rove2026') {
+                currentUser = { email: email, role: 'admin' };
+                localStorage.setItem('rove_user', JSON.stringify(currentUser));
+                msgDiv.classList.add('hidden');
+                toggleModal('auth-modal');
+                updateAuthUI();
                 return;
             }
-            
-            closeAuthModal();
-            checkUserStatus();
+
+            let users = JSON.parse(localStorage.getItem('rove_registered_users')) || [];
+
+            if (authMode === 'register') {
+                // Kayıt Olma
+                if (users.some(u => u.email === email)) {
+                    msgDiv.innerText = "Bu e-posta zaten kayıtlı!";
+                    msgDiv.classList.remove('hidden');
+                    return;
+                }
+                users.push({ email: email, password: password });
+                localStorage.setItem('rove_registered_users', JSON.stringify(users));
+                
+                currentUser = { email: email, role: 'user' };
+                localStorage.setItem('rove_user', JSON.stringify(currentUser));
+                toggleModal('auth-modal');
+            } else {
+                // Giriş Yapma
+                const user = users.find(u => u.email === email && u.password === password);
+                if (!user) {
+                    msgDiv.innerText = "Hatalı e-posta veya şifre!";
+                    msgDiv.classList.remove('hidden');
+                    return;
+                }
+                currentUser = { email: email, role: 'user' };
+                localStorage.setItem('rove_user', JSON.stringify(currentUser));
+                toggleModal('auth-modal');
+            }
+            updateAuthUI();
         }
 
         function logout() {
-            localStorage.removeItem('rove_session');
-            checkUserStatus();
+            currentUser = null;
+            localStorage.removeItem('rove_user');
+            updateAuthUI();
         }
 
-        function handleInceleClick(key) {
-            openModal(key);
-        }
-
-        // KİTAP VERİLERİ (SAHİBİNE TAM METİN, DIŞARIYA ÖZET)
-        const bookData = {
-            finans: {
-                title: "FİNANS REHBERİ: TEMELLER VE STRATEJİLER",
-                pages: "248 Sayfa",
-                desc: "Finansal özgürlüğün kapılarını aralayın. Bu rehber, bütçe yönetiminden risk analizine kadar finans dünyasında sağlam adımlar atmanız için tasarlandı.",
-                chapters: ["Bölüm 1: Finansal Okuryazarlığın Temelleri", "Bölüm 2: Bütçe ve Nakit Akışı Yönetimi", "Bölüm 3: Geleneksel Yatırım Stratejileri", "Bölüm 4: Makroekonomik Göstergeleri Okuma"],
-                fullText: `
-                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 mb-4 text-xs text-amber-800 font-bold">⚡ ROVE MODU: Kitabın tam metnini okuyorsunuz.</div>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 1: Finansal Okuryazarlığın Temelleri</h4>
-                    <p class="text-sm text-gray-600 mt-1">Finansal okuryazar olmak, enflasyon canavarı karşısında sarsılmaz bir finansal kalkan oluşturma sanatıdır. Aktif Varlıklar, siz gece yatağınızda uyurken bile cebinize düzenli olarak para koyan her şeydir (hisse senetleri, gayrimenkuller, telifler). Pasif Varlıklar ise sürekli para götürür (lüks telefon, araba masrafları).</p>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 2: Bütçe ve Nakit Akışı Yönetimi</h4>
-                    <p class="text-sm text-gray-600 mt-1">Başarılı bir nakit akışı yönetimi için 50/30/20 kuralı uygulanmalıdır. %50 zorunlu ihtiyaçlar, %30 kişisel istekler, %20 ise doğrudan yatırıma aktarılır. Para hesaba yattığı an yatırım payı ayrılmalıdır.</p>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 3: Geleneksel Yatırım Stratejileri</h4>
-                    <p class="text-sm text-gray-600 mt-1">Yatırım dünyasında tek bir sepete tüm yumurtaları koymak finansal intihardır. Çeşitlendirme esastır. Hisse senetleri, altın ve fonlar dengeli bir portföy oluşturur. Kademeli alım stratejisi uzun vadede kazandırır.</p>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 4: Makroekonomik Göstergeleri Okuma</h4>
-                    <p class="text-sm text-gray-600 mt-1">Merkez bankalarının faiz kararları ve enflasyon verileri küresel paranın yönünü tayin eder. Faiz artış dönemlerinde riskli varlıklar baskılanırken, faiz indirim dönemlerinde borsalar coşar.</p>
-                `
-            },
-            dijital: {
-                title: "DİJİTAL VARLIKLAR VE BLOKZİNCİRİ",
-                pages: "312 Sayfa",
-                desc: "Geleceğin ekonomisinde yerinizi alın. Kripto paralar, merkeziyetsiz finans (DeFi) ve teknik analiz temellerini Rove Management ekolüyle kavrayın.",
-                chapters: ["Bölüm 1: Blokzinciri ve Bitcoin Nedir?", "Bölüm 2: Akıllı Sözleşmeler ve Ethereum", "Bölüm 3: İndikatörler (RSI, Bollinger Bantları vb.)", "Bölüm 4: Portföy ve Risk Yönetimi"],
-                fullText: `
-                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 mb-4 text-xs text-teal-800 font-bold">⚡ ROVE MODU: Kitabın tam metnini okuyorsunuz.</div>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 1: Blokzinciri ve Bitcoin Nedir?</h4>
-                    <p class="text-sm text-gray-600 mt-1">Bitcoin aracı kurumları ortadan kaldırarak güveni matematik ve şifreleme ile sağlar. Toplamda sadece 21 milyon adet üretilebilir. Dijital çağın altınıdır.</p>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 2: Akıllı Sözleşmeler ve Ethereum</h4>
-                    <p class="text-sm text-gray-600 mt-1">Ethereum tüm küresel sistemleri ve hukuku merkeziyetsizleştirmeyi amaçlar. Akıllı sözleşmeler üçüncü bir şahsa ihtiyaç duymadan otomatik çalışan kod bloklarıdır.</p>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 3: İndikatörler (RSI, Bollinger Bantları vb.)</h4>
-                    <p class="text-sm text-gray-600 mt-1">RSI indikatörü aşırı alım ve satım bölgelerini (70 ve 30 seviyeleri) gösterir. Bollinger bantları ise fiyatın sıkışma ve patlama dönemlerini hacimsel genişlemelerle haritalandırır.</p>
-                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 4: Portföy ve Risk Yönetimi</h4>
-                    <p class="text-sm text-gray-600 mt-1">Kripto piyasasında sermayeyi korumak birinci kuraldır. Portföyün çoğunluğu majör varlıklarda (BTC, ETH) olmalı, stop-loss seviyeleri mutlak suretle belirlenmelidir.</p>
-                `
-            }
-        };
-
-        function openModal(key) {
-            const book = bookData[key];
-            const content = document.getElementById('modal-content');
-            
-            let innerHTMLContent = `
-                <div class="flex justify-between items-start mb-2 border-b pb-2">
-                    <h3 class="font-extrabold text-xl text-slate-950">${book.title}</h3>
-                </div>
-                <div class="flex gap-2 mb-4">
-                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded">${book.pages}</span>
-                </div>
-                <p class="text-sm text-gray-600 leading-relaxed mb-4">${book.desc}</p>
-                <h4 class="font-bold text-sm text-slate-900 mb-2">KİTAP İÇERİĞİ / BÖLÜMLER:</h4>
-                <ul class="text-xs text-gray-600 space-y-1 mb-6">
-                    ${book.chapters.map(ch => `<li>• ${ch}</li>`).join('')}
-                </ul>
-            `;
-
-            // EĞER GİRİŞ YAPAN KULLANICI 'enes' İSE TAM METNİ EKLE
-            if (currentUser === 'enes') {
-                innerHTMLContent += `<div class="border-t pt-4 mt-4">${book.fullText}</div>`;
-            } else {
-                // Normal kullanıcı ise kilitleme paneli göster
-                innerHTMLContent += `
-                    <div class="bg-gray-100 p-4 rounded-xl border text-center my-4">
-                        <p class="text-xs text-gray-500 font-bold">🔒 Bu kitabın tam metni yalnızca satın alan kullanıcılara e-posta ile iletilir.</p>
+        function updateAuthUI() {
+            const area = document.getElementById('auth-status-area');
+            if (currentUser) {
+                const label = currentUser.role === 'admin' ? '👑 Kurucu' : '👤 Üye';
+                area.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800 text-slate-300 font-medium">${label}: ${currentUser.email}</span>
+                        <button onclick="logout()" class="text-xs text-red-400 hover:text-red-300 font-semibold">Çıkış</button>
                     </div>
                 `;
+            } else {
+                area.innerHTML = `<button onclick="toggleModal('auth-modal')" class="bg-white text-slate-950 font-bold px-5 py-2 rounded-full text-sm hover:bg-slate-200 transition">Giriş Yap / Kayıt Ol</button>`;
+            }
+        }
+
+        // Kitap Açma Paneli Kontrolü
+        function openBook() {
+            if (!currentUser) {
+                alert("Kitabı incelemek için lütfen önce Giriş Yapın veya Kayıt Olun!");
+                toggleModal('auth-modal');
+                return;
             }
 
-            innerHTMLContent += `
-                <button onclick="closeModal(); redirectToStore('${key}');" class="w-full bg-amber-500 text-slate-950 text-xs font-bold py-2.5 rounded-lg hover:bg-amber-600 transition mt-4">BU KİTABI SATIN AL</button>
-            `;
+            const header = document.getElementById('book-header');
+            const body = document.getElementById('book-body');
+            const pageStatus = document.getElementById('page-status');
 
-            content.innerHTML = innerHTMLContent;
-            document.getElementById('book-modal').classList.remove('hidden');
+            header.innerHTML = `<h2 class="text-xl font-bold text-white">${bookData.title}</h2>`;
+
+            if (currentUser.role === 'admin') {
+                // Enes giriş yaptıysa her şeyi görsün
+                body.innerHTML = bookData.fullText;
+                pageStatus.innerText = "Tam Sürüm: 248 Sayfa Aktif";
+            } else {
+                // Normal kullanıcı giriş yaptıysa sadece ön izlemeyi görsün
+                body.innerHTML = bookData.preview;
+                pageStatus.innerText = "Kısıtlı Ön İzleme Modu";
+            }
+
+            toggleModal('book-modal');
         }
-
-        function closeModal() { document.getElementById('book-modal').classList.add('hidden'); }
-
-        function updateTime() {
-            document.getElementById('live-time').innerText = new Date().toLocaleTimeString('tr-TR');
-        }
-        setInterval(updateTime, 1000); updateTime();
-        checkUserStatus();
     </script>
 </body>
 </html>
