@@ -11,92 +11,74 @@
         .custom-scroll::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
 
+    <!-- HEADER -->
     <header class="p-6 flex justify-between items-center max-w-6xl w-full mx-auto">
         <div class="text-2xl font-black tracking-widest text-white">ROVE & CO.</div>
         <div id="auth-status-area">
-            <button onclick="toggleModal('auth-modal')" class="bg-white text-slate-950 font-bold px-5 py-2 rounded-full text-sm hover:bg-slate-200 transition">Giriş Yap / Kayıt Ol</button>
+            <button onclick="toggleModal('auth-modal')" class="bg-white text-slate-950 font-bold px-5 py-2 rounded-full text-sm hover:bg-slate-200 transition">Giriş Yap</button>
         </div>
     </header>
 
+    <!-- MAIN -->
     <main class="max-w-4xl mx-auto px-6 text-center py-12 flex-grow flex flex-col justify-center items-center">
-        <span class="text-xs font-bold tracking-widest text-slate-500 uppercase bg-slate-900 px-3 py-1 rounded-full mb-4">Elite Financial Intelligence</span>
-        <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight max-w-2xl mb-6">Finansal İmparatorluğunu İnşa Et</h1>
-        <p class="text-slate-400 text-lg max-w-xl mb-8">Rove & Co. tarafından hazırlanan, aktif varlık yönetiminden e-ticaret kaldıraçlarına kadar uzanan rehber serisi.</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">Finansal İmparatorluğunu İnşa Et</h1>
+        <p class="text-slate-400 text-lg mb-8">Rove & Co. rehber serisi.</p>
         
         <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl max-w-sm w-full text-left shadow-2xl">
-            <div class="h-48 relative rounded-xl mb-4 overflow-hidden border border-slate-700 shadow-inner">
-                <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900"></div>
+            <!-- KAPAK -->
+            <div class="h-48 relative rounded-xl mb-4 overflow-hidden border border-slate-700">
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-900 to-black"></div>
                 <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <div class="w-16 h-16 border-2 border-slate-700 rounded-full flex items-center justify-center mb-2">
-                        <span class="text-slate-400 font-bold tracking-tighter">R&C</span>
-                    </div>
-                    <span class="text-[10px] font-bold tracking-widest text-slate-500 uppercase">Premium Edition</span>
+                    <div class="w-16 h-16 border-2 border-slate-700 rounded-full flex items-center justify-center mb-2">R&C</div>
                 </div>
-                <div class="absolute top-3 left-3 w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
             </div>
-            <h3 class="text-lg font-bold text-white mb-1">Finansal Okuryazarlık Rehberi</h3>
-            <p class="text-xs text-slate-500 mb-4">Bütçe, Borsa, Kripto ve Girişimcilik Kaldıraçları</p>
-            <button onclick="openBook()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2.5 rounded-xl text-sm transition text-center">İncele</button>
+            <h3 class="text-lg font-bold text-white">Finansal Okuryazarlık Rehberi</h3>
+            <button onclick="openBook()" class="w-full bg-slate-800 hover:bg-slate-700 mt-4 py-2.5 rounded-xl text-sm transition">İncele</button>
         </div>
     </main>
 
-    <!-- KİTAP OKUMA MODAL -->
-    <div id="book-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col relative shadow-2xl">
-            <button onclick="toggleModal('book-modal')" class="absolute top-4 right-4 text-slate-500 hover:text-slate-300 text-2xl">&times;</button>
-            <div id="book-header" class="mb-4"></div>
-            <div id="book-body" class="flex-grow overflow-y-auto pr-2 custom-scroll space-y-6 text-slate-300 text-sm md:text-base leading-relaxed"></div>
-            <div id="purchase-area" class="mt-4 hidden">
-                <a href="https://www.shopier.com/KENDI_LINKIN" target="_blank" class="w-full block text-center bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-slate-950 font-black tracking-wide py-3.5 rounded-xl text-sm transition shadow-lg">💳 TAM SÜRÜMÜ SATIN AL</a>
-            </div>
+    <!-- GİRİŞ MODAL -->
+    <div id="auth-modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white text-slate-900 p-8 rounded-2xl max-w-md w-full">
+            <h2 class="text-xl font-bold mb-4">Giriş Yap</h2>
+            <input type="email" id="email" placeholder="E-posta" class="w-full border p-3 rounded-xl mb-3">
+            <input type="password" id="pass" placeholder="Şifre" class="w-full border p-3 rounded-xl mb-3">
+            <button onclick="login()" class="w-full bg-slate-950 text-white py-3 rounded-xl font-bold">Giriş Yap</button>
+        </div>
+    </div>
+
+    <!-- KİTAP MODAL -->
+    <div id="book-modal" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 p-8 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <button onclick="toggleModal('book-modal')" class="text-white float-right">Kapat</button>
+            <div id="book-content"></div>
         </div>
     </div>
 
     <script>
-        let currentUser = JSON.parse(localStorage.getItem('rove_user')) || null;
-        
-        const bookData = {
-            title: "Finansal Okuryazarlık Rehberi V1",
-            preview: `
-                <h3 class="text-xl font-bold text-white mb-2">📖 İNCELEME PANELİ</h3>
-                <p class="text-slate-400 mb-4">Bu rehber, Rove & Co. tarafından premium kullanıcılar için hazırlanmıştır. Tam sürümüne erişmek için satın almalısınız.</p>
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-left">
-                    <h4 class="font-bold text-white mb-2 text-sm text-amber-500">📌 İÇİNDEKİLER (Özet)</h4>
-                    <ul class="space-y-1 text-xs text-slate-400">
-                        <li>Bölüm 1: Finansal Okuryazarlığın Temelleri</li>
-                        <li>Bölüm 2: Bütçe ve Nakit Akışı Yönetimi</li>
-                        <li>Bölüm 3: Hisse Senetleri ve Borsa Yatırımcılığı</li>
-                        <li>Bölüm 4: Kripto Para Piyasaları ve Dijital Varlıklar</li>
-                        <li>Bölüm 5: Emtialar, Altın ve Güvenli Liman</li>
-                        <li>Bölüm 6: Gayrimenkul Yatırımları</li>
-                        <li>Bölüm 7: Girişimcilik, E-Ticaret ve Shopify</li>
-                        <li>Bölüm 8: Kod ve Medya Kaldıracı</li>
-                        <li>Bölüm 9: Vergi, Hukuk ve Şirket Yapıları</li>
-                        <li>Bölüm 10: Finansal Psikoloji (FOMO & FUD)</li>
-                        <li>Bölüm 11: Borç Yönetimi ve Kartopu Yöntemi</li>
-                        <li>Bölüm 12: Büyük Final - Finansal Özgürlük Planı</li>
-                    </ul>
-                </div>
-            `,
-            fullText: `<h2 class="text-2xl font-black text-amber-500">👑 TAM ERİŞİM</h2><p>Tüm 12 bölüm burada...</p>`
-        };
-
         function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
         
+        function login() {
+            localStorage.setItem('user', JSON.stringify({role: 'user'}));
+            toggleModal('auth-modal');
+            alert("Giriş başarılı!");
+        }
+
         function openBook() {
-            if (!currentUser) { alert("Lütfen giriş yapın!"); return; }
-            const body = document.getElementById('book-body');
-            const purchaseArea = document.getElementById('purchase-area');
+            const user = localStorage.getItem('user');
+            if (!user) { toggleModal('auth-modal'); return; }
             
-            if (currentUser.role === 'admin') {
-                body.innerHTML = bookData.fullText;
-                purchaseArea.classList.add('hidden');
-            } else {
-                body.innerHTML = bookData.preview;
-                purchaseArea.classList.remove('hidden');
-            }
+            document.getElementById('book-content').innerHTML = `
+                <h4 class="text-amber-500 font-bold mb-4">📌 İÇİNDEKİLER (Özet)</h4>
+                <ul class="text-slate-300 space-y-2">
+                    <li>Bölüm 1-4: Temeller ve Borsa</li>
+                    <li>Bölüm 5-8: Kripto ve Girişimcilik</li>
+                    <li>Bölüm 9-12: Vergi ve Final</li>
+                </ul>
+                <a href="https://shopier.com" class="block bg-amber-500 text-center py-3 mt-6 rounded-xl font-bold">SATIN AL</a>
+            `;
             toggleModal('book-modal');
         }
     </script>
