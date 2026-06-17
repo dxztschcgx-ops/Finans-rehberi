@@ -73,7 +73,7 @@
                     GELECEĞİNİ<br class="hidden md:inline"> ŞEKİLLENDİR
                 </h2>
                 <p class="text-gray-600 text-lg mb-8 max-w-md mx-auto md:mx-0">
-                    Finansal özgürlüğe giden yolda doğru stratejiler ve dijital varlık analizleriyle kendi geleceğinizin mimarı olun. Rove Management uzmanlığıyla hazırlanan kaynakları keşfedin.
+                    Finansal özgürlüğe giden yolda doğru stratejilerpt ve dijital varlık analizleriyle kendi geleceğinizin mimarı olun. Rove Management uzmanlığıyla hazırlanan kaynakları keşfedin.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
                     <a href="#kitaplar" class="bg-[#0f2d4a] text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-slate-800 transition block text-center">
@@ -114,7 +114,7 @@
                         </div>
                         <div class="flex flex-col items-center gap-2 z-10">
                             <div class="w-8 h-[2px] bg-amber-400 rounded-full"></div>
-                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / TAM METİN</p>
+                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / REHBER</p>
                         </div>
                     </div>
                     <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">FİNANS REHBERİ:<br>TEMELLER VE STRATEJİLER</h4>
@@ -126,7 +126,7 @@
                 <div class="mt-4">
                     <p class="text-center font-black text-2xl text-slate-950 my-3">120.00 TL</p>
                     <div class="grid grid-cols-2 gap-3 text-xs font-bold">
-                        <button onclick="handleInceleClick('finans')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">OKU / İNCELE</button>
+                        <button onclick="handleInceleClick('finans')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">İNCELE</button>
                         <button onclick="redirectToStore('finans')" class="bg-amber-500 text-slate-950 py-3.5 rounded-xl hover:bg-amber-600 transition tracking-wider">SATIN AL</button>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="flex flex-col items-center gap-2 z-10">
                             <div class="w-8 h-[2px] bg-teal-400 rounded-full"></div>
-                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / TAM METİN</p>
+                            <p class="text-[8px] text-gray-400 tracking-widest uppercase">E-KİTAP / REHBER</p>
                         </div>
                     </div>
                     <h4 class="font-extrabold text-xl text-slate-950 text-center leading-snug">DİJİTAL VARLIKLAR VE BLOKZİNCİRİ</h4>
@@ -156,7 +156,7 @@
                 <div class="mt-4">
                     <p class="text-center font-black text-2xl text-slate-950 my-3">145.00 TL</p>
                     <div class="grid grid-cols-2 gap-3 text-xs font-bold">
-                        <button onclick="handleInceleClick('dijital')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">OKU / İNCELE</button>
+                        <button onclick="handleInceleClick('dijital')" class="bg-gray-100 text-slate-800 py-3.5 rounded-xl hover:bg-gray-200 transition">İNCELE</button>
                         <button onclick="redirectToStore('dijital')" class="bg-amber-500 text-slate-950 py-3.5 rounded-xl hover:bg-amber-600 transition tracking-wider">SATIN AL</button>
                     </div>
                 </div>
@@ -165,35 +165,36 @@
         </div>
     </main>
 
-    <!-- GENİŞLETİLMİŞ KİTAP OKUMA PENCERESİ (MODAL) -->
-    <div id="book-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 shadow-2xl relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center">&times;</button>
-            <div id="modal-content" class="prose max-w-none"></div>
+    <!-- KİTAP DETAY PENCERESİ (MODAL) -->
+    <div id="book-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-xl w-full max-h-[85vh] overflow-y-auto p-6 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+            <div id="modal-content"></div>
         </div>
     </div>
 
-    <!-- AUTH MODAL -->
+    <!-- GİRİŞ / KAYIT PENCERESİ (AUTH MODAL) -->
     <div id="auth-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative">
             <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
-            <h3 class="font-extrabold text-xl text-slate-950 mb-4 text-center">Rove Portal</h3>
+            <h3 class="font-extrabold text-xl text-slate-950 mb-4 text-center">Rove Giriş Sistemi</h3>
+            
             <div class="space-y-3">
                 <div>
-                    <label class="text-xs font-bold text-gray-600 block mb-1">E-posta Adresiniz</label>
-                    <input type="email" id="auth-email" placeholder="ornek@domain.com" class="w-full border p-2 rounded-lg text-sm focus:outline-none focus:border-[#0f2d4a]">
+                    <label class="text-xs font-bold text-gray-600 block mb-1">E-posta veya Kullanıcı Adı</label>
+                    <input type="text" id="auth-email" placeholder="enes veya e-posta" class="w-full border p-2 rounded-lg text-sm focus:outline-none focus:border-[#0f2d4a]">
                 </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-600 block mb-1">Şifreniz</label>
+                <div id="password-field" class="hidden">
+                    <label class="text-xs font-bold text-gray-600 block mb-1">Admin Şifresi</label>
                     <input type="password" id="auth-pass" placeholder="••••••••" class="w-full border p-2 rounded-lg text-sm focus:outline-none focus:border-[#0f2d4a]">
                 </div>
-                <button onclick="simulateLogin()" class="w-full bg-[#0f2d4a] text-white py-2.5 rounded-lg text-sm font-bold shadow hover:bg-slate-800 transition mt-2">Ücretsiz Kayıt Ol ve Oku</button>
-                <p class="text-[10px] text-gray-400 text-center">Kitapların tam metin içeriklerine kesintisiz erişmek için ücretsiz portal kaydı yapmanız gerekmektedir.</p>
+                <button onclick="simulateLogin()" class="w-full bg-[#0f2d4a] text-white py-2.5 rounded-lg text-sm font-bold shadow hover:bg-slate-800 transition mt-2">Giriş Yap</button>
+                <p class="text-[10px] text-gray-400 text-center">Kullanıcılar için inceleme paneli, yöneticiler için tam metin okuma modu.</p>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- 5. FOOTER -->
     <footer class="bg-slate-950 text-gray-300 py-12 px-4 mt-16 border-t border-gray-800">
         <div class="container mx-auto text-center">
             <h5 class="font-bold text-white text-lg mb-2">Rove Management</h5>
@@ -201,75 +202,53 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT & KİTAP METİNLERİ VERİTABANI -->
+    <!-- JAVASCRIPT MANTIKLARI -->
     <script>
-        let isLoggedIn = false;
+        let currentUser = null; // Giriş yapan kullanıcıyı tutar
 
         const storeLinks = {
             finans: "FİNANS_REHBERİ_SHOPİER_LİNKİNİ_BURAYA_YAPIŞTIR",
             dijital: "DİJİTAL_VARLIKLAR_SHOPİER_LİNKİNİ_BURAYA_YAPIŞTIR"
         };
 
-        // DOĞRUDAN KODA GÖMÜLÜ TAM METİNLER
-        const bookData = {
-            finans: {
-                title: "FİNANS REHBERİ: TEMELLER VE STRATEJİLER",
-                tag: "E-Kitap Tam Metin Sürümü",
-                content: `
-                    <h3 class="text-lg font-bold text-slate-950 mb-2">🏛️ BÖLÜM 1: Finansal Okuryazarlığın Temelleri</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">Finansal özgürlüğe giden yol, paranın dilini ve onun arkasındaki matematiksel felsefeyi anlamaktan geçer. Çoğu insan parayı sadece faturaları ödeyecek ya da lüks tüketim malları satın alacak bir araç olarak görür. Oysa para, doğru yönetildiğinde kendi kendini çoğaltabilen canlı bir mekanizmadır. Finansal okuryazar olmak, enflasyon karşısında erimeyen bir finansal kalkan oluşturma sanatıdır. Bu disiplinde kavramanız gereken en hayati kural, Aktif ve Pasif varlıklar arasındaki amansız farktır.</p>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4"><strong>Aktif Varlıklar:</strong> Siz uyurken bile cebinize düzenli para koyan her şeydir. Şirket hisse senetleri, temettü ödeyen fonlar, kira getiren gayrimenkuller ve dijital telifler birer aktiftir. <strong>Pasif Varlıklar:</strong> Cebinizden sürekli para çıkaran, değeri zamanla eriyen tüketim çılgınlıklarıdır (taksitli son model telefonlar, gereksiz abonelikler vb.).</p>
-                    
-                    <h3 class="text-lg font-bold text-slate-950 mb-2 mt-6">📊 BÖLÜM 2: Bütçe ve Nakit Akışı Yönetimi</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">Zenginlik, kazandığınız miktarla değil, elinizde tuttuğunuz ve büyütebildiğiniz miktarla ölçülür. Başarılı bir nakit akışı yönetimi için profesyonel finansçıların uyguladığı <strong>50/30/20 Kuralı</strong> temel kılavuzumuzdur: Gelirinizin %50'si kira ve fatura gibi zorunlu ihtiyaçlara, %30'u kişisel isteklere, kalan en az %20'si ise asla dokunulmayacak şekilde doğrudan yatırıma aktarılmalıdır. Para hesaba yattığı an yatırım payını ayırıp "Önce Kendine Ödeme Yap" prensibini uygulamalısınız.</p>
-                    
-                    <h3 class="text-lg font-bold text-slate-950 mb-2 mt-6">📈 BÖLÜM 3: Geleneksel Yatırım Stratejileri</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">Yatırım dünyasının altın kuralı: "Tek bir sepete tüm yumurtaları koymak finansal intihardır." Risk yönetimi, piyasalarda hayatta kalmanın mutlak anahtarıdır. Sermayenizi büyütürken borsa (hisse senedi), yatırım fonları ve emtia (altın, gümüş) arasında mantıklı bir denge kurmalısınız. Piyasayı zamanlamaya çalışmak yerine, her ay fiyatına bakmadan düzenli alım yapmayı hedefleyen Dolar Maliyet Ortalaması stratejisini seçmelisiniz. Sabır, piyasalarda her zaman saf zekadan daha çok kazandırır.</p>
-                    
-                    <h3 class="text-lg font-bold text-slate-950 mb-2 mt-6">🌍 BÖLÜM 4: Makroekonomik Göstergeleri Okuma</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">Merkez bankalarının faiz kararları, enflasyon verileri (TÜFE) ve işsizlik oranları, küresel sermayenin hangi yöne akacağını belirleyen ana unsurlardır. Merkez bankaları faiz artırıyorsa nakit değer kazanır ve riskli varlıklar baskılanır; faiz indiriyorsa ucuzlayan para borsaları ve piyasaları coşturur. Makroekonomiyi okumak, fırtına yaklaşmadan önce gemiyi güvenli limana çekmektir. Grafiklerin detaylarında boğulmadan önce her zaman büyük resmi analiz etmek zorundasınız.</p>
-                `
-            },
-            dijital: {
-                title: "DİJİTAL VARLIKLAR VE BLOKZİNCİRİ",
-                tag: "E-Kitap Tam Metin Sürümü",
-                content: `
-                    <h3 class="text-lg font-bold text-slate-950 mb-2">🌐 BÖLÜM 1: Blokzinciri ve Bitcoin Nedir?</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">2008 küresel krizinin hemen ardından Satoshi Nakamoto tarafından temelleri atılan Bitcoin, sadece bir dijital para değil; merkeziyetsiz bir finansal devrimdir. Arkasındaki Blokzinciri (Blockchain) teknolojisi, aracı kurumları ortadan kaldırarak güveni matematik ve şifreleme ile sağlar. Değiştirilemez, geriye dönük kurcalanamaz ve tamamen şeffaf bu defter yapısı, insanlık tarihinin ilk kesin kurallara bağlı, sınırlı arzlı dijital varlığını (toplamda sadece 21 Milyon adet) doğurmuştur. Bitcoin, dijital çağın altınıdır.</p>
-                    
-                    <h3 class="text-lg font-bold text-slate-950 mb-2 mt-6">⚡ BÖLÜM 2: Akıllı Sözleşmeler ve Ethereum</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">Bitcoin parayı merkeziyetsizleştirirken, Ethereum tüm küresel sistemleri, anlaşmaları ve hukuku merkeziyetsizleştirmeyi amaçlar. Vitalik Buterin tarafından geliştirilen akıllı sözleşmeler (Smart Contracts), belirli şartlar yerine geldiğinde arkasında hiçbir insan müdahalesi olmadan otomatik olarak çalışan kod bloklarıdır. Bu teknoloji sayesinde sigorta işlemlerinden mülk transferlerine, borç alıp vermeden sanatsal haklara (NFT) kadar her şey üçüncü bir şahsa ihtiyaç duymadan güvenle yürütülür.</p>
-                    
-                    <h3 class="text-lg font-bold text-slate-950 mb-2 mt-6">📊 BÖLÜM 3: İndikatörler (RSI, Bollinger Bantları vb.)</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">Kripto para piyasaları yüksek volatiliteye sahiptir. Bu piyasada duygularla değil, matematiksel verilerle hareket edilir. RSI (Göreceli Güç Endeksi), bir varlığın aşırı alınıp şiştiğini (70 seviyesi üzeri) veya aşırı satılıp ucuzladığını (30 seviyesi altı) gösterir. Bollinger Bantları ise fiyatın sıkışma ve patlama dönemlerini hacimsel genişlemelerle bize haritalandırır. Teknik analiz bir kehanet aracı değil; olasılıkları lehinize çevirme disiplinidir.</p>
-                    
-                    <h3 class="text-lg font-bold text-slate-950 mb-2 mt-6">🛡️ BÖLÜM 4: Portföy ve Risk Yönetimi</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">Kripto para piyasasında bir gecede zengin olma hayali kuranlar, genellikle tüm sermayesini kaybedenlerdir. Rove Management stratejisi, sermayeyi korumayı birinci kural olarak belirler. Dijital varlık portföyünüzün majör kısmı (%60-70) mutlaka Bitcoin ve Ethereum gibi rüştünü ispatlamış varlıklardan oluşmalıdır. Yüksek riskli projelere ise küçük sermayeler ayrılmalıdır. Zarar kes (Stop-Loss) seviyeleri önceden belirlenmemiş hiçbir işleme asla girilmemelidir.</p>
-                `
+        // Girdiyi dinleyip enes yazılırsa şifre alanını açan mekanizma
+        document.getElementById('auth-email').addEventListener('input', function(e) {
+            const passwordField = document.getElementById('password-field');
+            if(e.target.value.toLowerCase() === 'enes') {
+                passwordField.classList.remove('hidden');
+            } else {
+                passwordField.classList.add('hidden');
             }
-        };
+        });
 
         function redirectToStore(key) {
             const link = storeLinks[key];
             if(link.includes("YAPIŞTIR")) {
-                alert("Rove Sistem Mesajı: Mağaza onay sürecindedir. Kısa süre sonra bu alandan doğrudan satın alım ve destek kanalları açılacaktır.");
+                alert("Rove Sistem Mesajı: Mağaza onay sürecindedir.");
             } else {
                 window.open(link, '_blank');
             }
         }
 
         function checkUserStatus() {
-            const savedUser = localStorage.getItem('rove_user');
+            const savedUser = localStorage.getItem('rove_session');
             if(savedUser) {
-                isLoggedIn = true;
-                document.getElementById('user-status-area').innerHTML = `
-                    <span class="text-xs font-medium text-gray-300 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">👤 Rove Üyesi</span>
-                    <button onclick="logout()" class="text-xs text-red-400 underline ml-2">Çıkış</button>
-                `;
+                currentUser = savedUser;
+                if(currentUser === 'enes') {
+                    document.getElementById('user-status-area').innerHTML = `
+                        <span class="text-xs font-bold text-yellow-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-yellow-500 animate-pulse">👑 Rove Kurucusu</span>
+                        <button onclick="logout()" class="text-xs text-red-400 underline ml-2">Çıkış</button>
+                    `;
+                } else {
+                    document.getElementById('user-status-area').innerHTML = `
+                        <span class="text-xs font-medium text-gray-300 bg-slate-800 px-3 py-1.5 rounded-lg">👤 Ziyaretçi</span>
+                        <button onclick="logout()" class="text-xs text-red-400 underline ml-2">Çıkış</button>
+                    `;
+                }
             } else {
-                isLoggedIn = false;
+                currentUser = null;
                 document.getElementById('user-status-area').innerHTML = `
-                    <button onclick="openAuthModal()" class="bg-yellow-500 text-slate-900 px-3 py-1 rounded-md text-xs font-bold hover:bg-yellow-600 transition">Giriş Yap / Kayıt Ol</button>
+                    <button onclick="openAuthModal()" class="bg-yellow-500 text-slate-900 px-3 py-1 rounded-md text-xs font-bold hover:bg-yellow-600 transition">Giriş Yap</button>
                 `;
             }
         }
@@ -278,45 +257,112 @@
         function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
 
         function simulateLogin() {
-            const email = document.getElementById('auth-email').value;
-            if(!email.includes('@')) { alert('Lütfen geçerli bir e-posta adresi girin.'); return; }
-            localStorage.setItem('rove_user', email);
+            const input = document.getElementById('auth-email').value.trim().toLowerCase();
+            const pass = document.getElementById('auth-pass').value;
+
+            if(input === 'enes') {
+                // Şifreyi kendi istediğin bir şeyle değiştirebilirsin (Şu anlık: 1234)
+                if(pass === '1234') {
+                    localStorage.setItem('rove_session', 'enes');
+                    alert('Hoş geldin Enes! Kitapların tam metin okuma modu senin için aktif edildi.');
+                } else {
+                    alert('Kurucu şifresi hatalı!');
+                    return;
+                }
+            } else if(input.includes('@')) {
+                localStorage.setItem('rove_session', 'customer');
+                alert('Ziyaretçi girişi yapıldı. Kitap özetlerini inceleyebilirsiniz.');
+            } else {
+                alert('Lütfen geçerli bir e-posta veya kurucu adı girin.');
+                return;
+            }
+            
             closeAuthModal();
             checkUserStatus();
-            alert('Başarıyla kayıt olundu! Kitapların tam metin içerikleri açıldı.');
         }
 
         function logout() {
-            localStorage.removeItem('rove_user');
+            localStorage.removeItem('rove_session');
             checkUserStatus();
         }
 
         function handleInceleClick(key) {
-            if(!isLoggedIn) {
-                alert('Kitap içeriğini web sitesi üzerinden kesintisiz okumak için lütfen ücretsiz kayıt olun veya giriş yapın.');
-                openAuthModal();
-            } else {
-                openModal(key);
-            }
+            openModal(key);
         }
+
+        // KİTAP VERİLERİ (SAHİBİNE TAM METİN, DIŞARIYA ÖZET)
+        const bookData = {
+            finans: {
+                title: "FİNANS REHBERİ: TEMELLER VE STRATEJİLER",
+                pages: "248 Sayfa",
+                desc: "Finansal özgürlüğün kapılarını aralayın. Bu rehber, bütçe yönetiminden risk analizine kadar finans dünyasında sağlam adımlar atmanız için tasarlandı.",
+                chapters: ["Bölüm 1: Finansal Okuryazarlığın Temelleri", "Bölüm 2: Bütçe ve Nakit Akışı Yönetimi", "Bölüm 3: Geleneksel Yatırım Stratejileri", "Bölüm 4: Makroekonomik Göstergeleri Okuma"],
+                fullText: `
+                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 mb-4 text-xs text-amber-800 font-bold">⚡ ROVE MODU: Kitabın tam metnini okuyorsunuz.</div>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 1: Finansal Okuryazarlığın Temelleri</h4>
+                    <p class="text-sm text-gray-600 mt-1">Finansal okuryazar olmak, enflasyon canavarı karşısında sarsılmaz bir finansal kalkan oluşturma sanatıdır. Aktif Varlıklar, siz gece yatağınızda uyurken bile cebinize düzenli olarak para koyan her şeydir (hisse senetleri, gayrimenkuller, telifler). Pasif Varlıklar ise sürekli para götürür (lüks telefon, araba masrafları).</p>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 2: Bütçe ve Nakit Akışı Yönetimi</h4>
+                    <p class="text-sm text-gray-600 mt-1">Başarılı bir nakit akışı yönetimi için 50/30/20 kuralı uygulanmalıdır. %50 zorunlu ihtiyaçlar, %30 kişisel istekler, %20 ise doğrudan yatırıma aktarılır. Para hesaba yattığı an yatırım payı ayrılmalıdır.</p>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 3: Geleneksel Yatırım Stratejileri</h4>
+                    <p class="text-sm text-gray-600 mt-1">Yatırım dünyasında tek bir sepete tüm yumurtaları koymak finansal intihardır. Çeşitlendirme esastır. Hisse senetleri, altın ve fonlar dengeli bir portföy oluşturur. Kademeli alım stratejisi uzun vadede kazandırır.</p>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 4: Makroekonomik Göstergeleri Okuma</h4>
+                    <p class="text-sm text-gray-600 mt-1">Merkez bankalarının faiz kararları ve enflasyon verileri küresel paranın yönünü tayin eder. Faiz artış dönemlerinde riskli varlıklar baskılanırken, faiz indirim dönemlerinde borsalar coşar.</p>
+                `
+            },
+            dijital: {
+                title: "DİJİTAL VARLIKLAR VE BLOKZİNCİRİ",
+                pages: "312 Sayfa",
+                desc: "Geleceğin ekonomisinde yerinizi alın. Kripto paralar, merkeziyetsiz finans (DeFi) ve teknik analiz temellerini Rove Management ekolüyle kavrayın.",
+                chapters: ["Bölüm 1: Blokzinciri ve Bitcoin Nedir?", "Bölüm 2: Akıllı Sözleşmeler ve Ethereum", "Bölüm 3: İndikatörler (RSI, Bollinger Bantları vb.)", "Bölüm 4: Portföy ve Risk Yönetimi"],
+                fullText: `
+                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 mb-4 text-xs text-teal-800 font-bold">⚡ ROVE MODU: Kitabın tam metnini okuyorsunuz.</div>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 1: Blokzinciri ve Bitcoin Nedir?</h4>
+                    <p class="text-sm text-gray-600 mt-1">Bitcoin aracı kurumları ortadan kaldırarak güveni matematik ve şifreleme ile sağlar. Toplamda sadece 21 milyon adet üretilebilir. Dijital çağın altınıdır.</p>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 2: Akıllı Sözleşmeler ve Ethereum</h4>
+                    <p class="text-sm text-gray-600 mt-1">Ethereum tüm küresel sistemleri ve hukuku merkeziyetsizleştirmeyi amaçlar. Akıllı sözleşmeler üçüncü bir şahsa ihtiyaç duymadan otomatik çalışan kod bloklarıdır.</p>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 3: İndikatörler (RSI, Bollinger Bantları vb.)</h4>
+                    <p class="text-sm text-gray-600 mt-1">RSI indikatörü aşırı alım ve satım bölgelerini (70 ve 30 seviyeleri) gösterir. Bollinger bantları ise fiyatın sıkışma ve patlama dönemlerini hacimsel genişlemelerle haritalandırır.</p>
+                    <h4 class="font-bold text-slate-900 mt-4">Bölüm 4: Portföy ve Risk Yönetimi</h4>
+                    <p class="text-sm text-gray-600 mt-1">Kripto piyasasında sermayeyi korumak birinci kuraldır. Portföyün çoğunluğu majör varlıklarda (BTC, ETH) olmalı, stop-loss seviyeleri mutlak suretle belirlenmelidir.</p>
+                `
+            }
+        };
 
         function openModal(key) {
             const book = bookData[key];
             const content = document.getElementById('modal-content');
-            content.innerHTML = `
-                <div class="border-b pb-4 mb-6">
-                    <span class="text-xs font-bold text-amber-500 uppercase tracking-widest">${book.tag}</span>
-                    <h2 class="text-2xl font-black text-slate-950 mt-1">${book.title}</h2>
-                    <p class="text-xs text-gray-400 mt-1">Yayıncı ve Telif Sahibi: Rove Management</p>
+            
+            let innerHTMLContent = `
+                <div class="flex justify-between items-start mb-2 border-b pb-2">
+                    <h3 class="font-extrabold text-xl text-slate-950">${book.title}</h3>
                 </div>
-                <div class="space-y-6 max-h-[55vh] overflow-y-auto pr-2">
-                    ${book.content}
+                <div class="flex gap-2 mb-4">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded">${book.pages}</span>
                 </div>
-                <div class="border-t pt-4 mt-6 flex flex-col sm:flex-row gap-3 justify-between items-center">
-                    <p class="text-xs text-gray-500 text-center sm:text-left">Bu eğitim içeriğini beğendiyseniz desteklemek için dükkanımızdan satın alabilirsiniz.</p>
-                    <button onclick="closeModal(); redirectToStore('${key}');" class="bg-amber-500 text-slate-950 text-xs font-bold px-6 py-3 rounded-xl hover:bg-amber-600 transition shrink-0 whitespace-nowrap w-full sm:w-auto">DESTEKLE VE SATIN AL</button>
-                </div>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">${book.desc}</p>
+                <h4 class="font-bold text-sm text-slate-900 mb-2">KİTAP İÇERİĞİ / BÖLÜMLER:</h4>
+                <ul class="text-xs text-gray-600 space-y-1 mb-6">
+                    ${book.chapters.map(ch => `<li>• ${ch}</li>`).join('')}
+                </ul>
             `;
+
+            // EĞER GİRİŞ YAPAN KULLANICI 'enes' İSE TAM METNİ EKLE
+            if (currentUser === 'enes') {
+                innerHTMLContent += `<div class="border-t pt-4 mt-4">${book.fullText}</div>`;
+            } else {
+                // Normal kullanıcı ise kilitleme paneli göster
+                innerHTMLContent += `
+                    <div class="bg-gray-100 p-4 rounded-xl border text-center my-4">
+                        <p class="text-xs text-gray-500 font-bold">🔒 Bu kitabın tam metni yalnızca satın alan kullanıcılara e-posta ile iletilir.</p>
+                    </div>
+                `;
+            }
+
+            innerHTMLContent += `
+                <button onclick="closeModal(); redirectToStore('${key}');" class="w-full bg-amber-500 text-slate-950 text-xs font-bold py-2.5 rounded-lg hover:bg-amber-600 transition mt-4">BU KİTABI SATIN AL</button>
+            `;
+
+            content.innerHTML = innerHTMLContent;
             document.getElementById('book-modal').classList.remove('hidden');
         }
 
