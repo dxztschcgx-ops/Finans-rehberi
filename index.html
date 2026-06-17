@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finans Rehberi - Caner Yılmaz</title>
+    <!-- Tailwind CSS (Mobilde kurulum gerekmeden çalışması için CDN kullanıyoruz) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Canlı terminalin kayma efekti için basit bir animasyon */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .marquee-text {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- 1. ÜST NAVIGASYON (NAVBAR) -->
+    <nav class="bg-[#0f2d4a] text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <!-- Logomuz (Geçici olarak F harfi ikonu) -->
+                <div class="bg-blue-500 font-bold text-xl px-3 py-1 rounded">F</div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-wide">FİNANS REHBERİ</h1>
+                    <p class="text-xs text-gray-300">Caner Yılmaz</p>
+                </div>
+            </div>
+            <!-- Menü Linkleri (Mobilde kolay tıklansın diye büyük ve aralıklı) -->
+            <div class="flex flex-wrap justify-center gap-4 text-sm font-medium pt-2 md:pt-0">
+                <a href="#" class="text-yellow-400">Ana Sayfa</a>
+                <a href="#" class="hover:text-gray-300">Kitaplar</a>
+                <a href="#" class="hover:text-gray-300">Blog</a>
+                <a href="#" class="hover:text-gray-300">Hakkımda</a>
+                <a href="#" class="hover:text-gray-300 flex items-center">
+                    Sepetim <span class="bg-yellow-500 text-slate-900 text-xs font-bold px-1.5 py-0.5 rounded-full ml-1">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. CANLI FİYAT TERMİNALİ (LIVE TERMINAL) -->
+    <div class="bg-black text-green-400 py-2 border-b border-gray-800 text-xs font-mono overflow-hidden whitespace-nowrap">
+        <div class="marquee-text">
+            LIVE TERMINAL: 
+            <span class="mx-2 text-white">[BTC/USD: <span id="btc-price">68,450.20</span> <span class="text-green-500">▲ +2.1%</span>]</span>
+            <span class="mx-2 text-white">[ETH/USD: <span id="eth-price">3,012.50</span> <span class="text-green-500">▲ +1.5%</span>]</span>
+            <span class="mx-2 text-white">[XAU/USD (ALTIN): <span id="gold-price">2,385.10</span> <span class="text-green-500">▲ +0.8%</span>]</span>
+            <span class="mx-2 text-white">[BIST 100: 10,250.70 <span class="text-green-500">▲ +1.9%</span>]</span>
+            <span class="ml-4 text-gray-400">SON GÜNCELLEME: <span id="live-time">00:00:00</span></span>
+        </div>
+    </div>
+
+    <!-- 3. ANA GİRİŞ ALANI (HERO SECTION) -->
+    <header class="bg-white py-12 px-4 shadow-sm">
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left md:w-1/2">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+                    GELECEĞİNİ<br class="hidden md:inline"> ŞEKİLLENDİR
+                </h2>
+                <p class="text-gray-600 text-base mb-6 max-w-md mx-auto md:mx-0">
+                    Finansal özgürlüğe giden yolda doğru stratejiler ve dijital varlık analizleriyle kendi geleceğinizin mimarı olun.
+                </p>
+                <a href="#kitaplar" class="bg-[#0f2d4a] text-white font-semibold px-6 py-3 rounded shadow hover:bg-slate-800 transition block sm:inline-block">
+                    Kitapları İncele
+                </a>
+            </div>
+            <!-- İllüstrasyon veya Grafik Alanı -->
+            <div class="md:w-1/2 flex justify-center">
+                <div class="w-64 h-64 bg-gray-100 rounded-full flex items-center justify-center shadow-inner relative">
+                    <!-- Basit bir yukarı yönlü grafik emojisi/grafiği simülasyonu -->
+                    <span class="text-7xl">📈</span>
+                    <div class="absolute bottom-2 bg-slate-900 text-white text-xs px-3 py-1 rounded-full shadow">Yatırım & Analiz</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 4. YENİ ÇIKAN KİTAPLARIM -->
+    <main id="kitaplar" class="container mx-auto px-4 py-12">
+        <h3 class="text-xl md:text-2xl font-bold text-center text-slate-950 mb-8 tracking-wide uppercase border-b pb-4">
+            YENİ ÇIKAN KİTAPLARIM
+        </h3>
+
+        <!-- Kitap Kartları Izgarası (Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <!-- 1. Kitap -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex flex-col justify-between hover:shadow-lg transition">
+                <div>
+                    <!-- Kitap Kapağı Tasarımı -->
+                    <div class="w-40 h-56 bg-gradient-to-b from-slate-800 to-slate-950 rounded-lg mx-auto shadow-md mb-4 flex flex-col justify-between p-3 text-center border-l-4 border-yellow-500">
+                        <p class="text-[10px] text-yellow-500 font-bold tracking-widest">FİNANS REHBERİ</p>
+                        <p class="text-white text-xs font-bold leading-tight">TEMELLER VE STRATEJİLER</p>
+                        <p class="text-[9px] text-gray-400">Caner Yılmaz</p>
+                    </div>
+                    <h4 class="font-bold text-base text-slate-900 text-center leading-tight">FİNANS REHBERİ: TEMELLER VE STRATEJİLER</h4>
+                    <p class="text-xs text-gray-500 text-center mt-1">CANER YILMAZ</p>
+                    <div class="text-yellow-500 text-center text-sm my-2">★ 4.8<span class="text-gray-400 text-xs">/5</span></div>
+                </div>
+                <div>
+                    <p class="text-center font-bold text-lg text-slate-900 my-2">120.00 TL</p>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                        <button class="bg-gray-100 text-slate-800 py-2 rounded.hover:bg-gray-200 transition">İNCELE</button>
+                        <button class="bg-yellow-500 text-slate-900 py-2 rounded hover:bg-yellow-600 transition" onclick="alert('Sepete eklendi!')">SEPETE EKLE</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Kitap -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 flex flex-col justify-between hover:shadow-lg transition">
+                <div>
+                    <!-- Kitap Kapağı Tasarımı -->
+                    <div class="w-40 h-56 bg-gradient-to-b from-teal-900 to-slate-950 rounded-lg mx-auto shadow-md mb-4 flex flex-col justify-between p-3 text-center border-l-4 border-teal-400">
+                        <p class="text-[10px] text-teal-400 font-bold tracking-widest">DİJİTAL VARLIKLAR</p>
+                        <p class="text-white text-xs font-bold leading-tight">BLOKZİNCİRİ & GELECEĞİN PARASI</p>
+                        <p class="text-[9px] text-gray-400">Caner Yılmaz</p>
+                    </div>
+                    <h4 class="font-bold text-base text-slate-900 text-center leading-tight">DİJİTAL VARLIKLAR VE BLOKZİNCİRİ</h4>
+                    <p class="text-xs text-gray-500 text-center mt-1">CANER YILMAZ</p>
+                    <div class="text-yellow-500 text-center text-sm my-2">★ 4.9<span class="text-gray-400 text-xs">/5</span></div>
+                </div>
+                <div>
+                    <p class="text-center font-bold text-lg text-slate-900 my-2">145.00 TL</p>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                        <button class="bg-gray-100 text-slate-800 py-2 rounded hover:bg-gray-200 transition">İNCELE</button>
+                        <button class="bg-yellow-500 text-slate-900 py-2 rounded hover:bg-yellow-600 transition" onclick="alert('Sepete eklendi!')">SEPETE EKLE</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 5. CANLI VERİ VE SAAT JAVASCRIPT KODLARI -->
+    <script>
+        // Saat güncelleme fonksiyonu
+        function updateTime() {
+            const timeEl = document.getElementById('live-time');
+            const now = new Date();
+            timeEl.innerText = now.toLocaleTimeString('tr-TR');
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Basit simüle edilmiş canlı fiyat hareketleri (Gerçek API bağlantısını daha sonra buraya ekleyeceğiz)
+        function simulatePrices() {
+            const btc = 68450 + (Math.random() * 40 - 20);
+            const eth = 3012 + (Math.random() * 4 - 2);
+            const gold = 2385 + (Math.random() * 2 - 1);
+            
+            document.getElementById('btc-price').innerText = btc.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('eth-price').innerText = eth.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('gold-price').innerText = gold.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+        setInterval(simulatePrices, 3000);
+    </script>
+</body>
+</html>
